@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({  
+  // Navbar
   navLogo: {
     backgroundColor: '#002775',
     textAlign: 'center',
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
 
+  // Search 
   search: {
     width: '100%',
     textAlign: 'center',
@@ -57,6 +59,20 @@ const useStyles = makeStyles((theme) => ({
   sortBy: {
     textAlign: 'right',
     float: 'right',
+  },
+
+  // Tickets 
+  ticketContainer: {
+    textAlign: 'center',
+  },
+
+  ticketPreview: {
+    display: 'inline-block',
+  },
+
+  ticketPreviewInfo: {
+    width: '300px',
+    height: '300px',
   },
   
 }));

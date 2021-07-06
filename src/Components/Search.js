@@ -15,7 +15,7 @@ function Search() {
         <Typography variant='h5'>Ohio Lottery Scratch-Off Tickets</Typography>
       </div>
       <div className={classes.searchBar}>
-        <OutlinedInput placeholder="Search Ticket Name or Number" fullWidth endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>} />
+        <OutlinedInput placeholder="Search Ticket Name or Number" fullWidth endAdornment={<InputAdornment position="end"><SearchIcon fontSize='default' /></InputAdornment>} />
       </div>
       <br />
       <div className={classes.searchFilters}>
