@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
   searchBar: {
     display: 'inline-block',
-    width: '40%',
+    width: '50%',
   },
 
   searchTitle: {
@@ -48,29 +48,85 @@ const useStyles = makeStyles((theme) => ({
   searchFilters: {
     paddingTop: '15px',
     display: 'inline-block',
-    width: '40%',
+    width: '50%',
   },
 
   priceFilter: {
     textAlign: 'left',
     float: 'left',
+    width: '45%'
+  },
+
+  checkboxContainer: {
+    textAlign: 'center',    
+  },
+
+ checkboxChecked: {
+    float: 'left',
+    height: '50px',
+    width: '50px',
+    position: 'relative',
+    cursor: 'pointer',    
+    backgroundColor: '#001C42',
+    margin: '8px 8px 0 0',
+    color: '#FFFFFF',
+    border: 'solid #001C42',
+    borderRadius: '8px',
+  },
+
+ checkboxUnchecked: {
+    float: 'left',
+    height: '50px',
+    width: '50px',
+    position: 'relative',
+    cursor: 'pointer',    
+    backgroundColor: '#FFFFFF',
+    margin: '8px 8px 0 0',
+    color: '#001C42',
+    border: 'solid #001C42',
+    borderRadius: '8px',
+  },
+
+  checkboxLabel: {
+    position: 'absolute',
+    bottom: '15px',
+    left: 0,
+    right: 0,
+    fontSize: '1.2em',
+    fontWeight: 'bold',
   },
 
   sortBy: {
-    textAlign: 'right',
+    textAlign: 'left',
     float: 'right',
+    width: '40%',
+    height: '100%',
+    backgroundColor: '#fffff',
+  },
+
+  sortBar: {
+    width: '100%',
+    margin: '8px 8px 0 0',
+    backgroundColor: '#001C42',
+    color: '#FFFFFF !important',
+    textAlign: 'center',
+    fontWeight: 'bold !important',
+
+  },
+
+  sortIcon: {
+    fill: '#FFFFFF !important',
   },
 
   // Tickets 
   ticketContainer: {
     textAlign: 'center',
-    margin: '8px',
   },
 
   ticketPreview: {
     display: 'inline-block',
     position: 'relative',
-    margin: '40px 30px 30px 0',
+    margin: '40px 20px',
     width: '300px',
     height: '392px',
     borderRadius: '20px 20px 0 0',
@@ -85,6 +141,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '15px',
     paddingRight: '15px',
     marginTop: '15px', 
+    fontSize: '1.05em'
   },
 
   ticketPreviewImageContainer: {
