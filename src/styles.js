@@ -64,15 +64,53 @@ const useStyles = makeStyles((theme) => ({
   // Tickets 
   ticketContainer: {
     textAlign: 'center',
+    margin: '8px',
   },
 
   ticketPreview: {
     display: 'inline-block',
+    position: 'relative',
+    margin: '40px 30px 30px 0',
+    width: '300px',
+    height: '392px',
+    borderRadius: '20px 20px 0 0',
+    backgroundImage: 'linear-gradient(#001C42, #002774)',
+    color: '#FFFFFF',
+  },
+
+  ticketPreviewHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    height: '10%',
+    paddingLeft: '15px',
+    paddingRight: '15px',
+    marginTop: '15px', 
+  },
+
+  ticketPreviewImageContainer: {
+    height: '300px',
+    width: '300px',
+    position: 'relative',
+  },
+
+  ticketPreviewImage: {
+    width: '180px',
+    minHeight: '200px',
+    maxHeight: '300px',
+    position: 'absolute',
+    bottom: '0',
+    left: '60px',
+    objectFit: 'fill',
   },
 
   ticketPreviewInfo: {
-    width: '300px',
-    height: '300px',
+    height: '70px',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    borderRadius: '0 0 20px 20px',
+    backgroundColor: '#001C42',
+    verticalAlign: 'middle',
   },
   
 }));
