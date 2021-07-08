@@ -1,13 +1,19 @@
+import React, { useState } from 'react';
+
 import Search from './Search'
 import TicketContainer from './TicketContainer'
 
 function Home() {
+  const [selectedPrices, setSelectedPrices] = useState([]);
 
-  console.log(process.env.LOTTO_LUCK_DEV_IP)
+  const updatedFilteredPrices = (prices) => {
+    setSelectedPrices(prices)
+  }
+  
   return (
     <div>
-      <Search />
-      <TicketContainer />
+      <Search onPricesUpdate={updatedFilteredPrices}/>
+      <TicketContainer updatedPrices={selectedPrices} />
     </div>
   );
 }

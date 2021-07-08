@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React, { useState } from 'react';
 import useStyles from '../styles'
 
 function Checkbox(price){
@@ -10,8 +10,8 @@ function Checkbox(price){
   }
 
   return(
-    <div onClick={(e) => handleCheckbox(e)} className={isChecked ? classes.checkboxChecked : classes.checkboxUnchecked}>
-      <span className={classes.checkboxLabel}> ${price.price}</span>
+    <div id={price.price} onClick={(e) => handleCheckbox(e)} className={isChecked ? classes.checkboxChecked : classes.checkboxUnchecked}>
+      <span id={price.price} className={classes.checkboxLabel}> ${price.price}</span>
     </div>
   );
 }

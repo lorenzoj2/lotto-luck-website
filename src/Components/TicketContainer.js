@@ -4,7 +4,7 @@ import useStyles from '../styles'
 
 import TicketPreview from './TicketPreview'
 
-function TicketContainer()
+function TicketContainer(updatedPrices)
 {
   const classes = useStyles();
   
@@ -22,11 +22,14 @@ function TicketContainer()
   return(
     <div className={classes.ticketContainer}>
       {data.map(ticket => (
-        <TicketPreview data={ticket}/> 
-      ))}
+        updatedPrices.updatedPrices.length > 0 ? 
+          updatedPrices.updatedPrices.includes(ticket.price) &&
+          <TicketPreview key={ticket.id} data={ticket}/> 
+          :
+          <TicketPreview key={ticket.id} data={ticket}/> 
+        ))}
     </div>
   )
 }
 
 export default TicketContainer;
-

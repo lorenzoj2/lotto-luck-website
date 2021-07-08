@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({  
-  // Navbar
+  // Header
   navLogo: {
     backgroundColor: '#002775',
     textAlign: 'center',
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   searchBar: {
     display: 'inline-block',
     width: '50%',
+    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
   },
 
   searchTitle: {
@@ -46,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   searchFilters: {
-    paddingTop: '15px',
+    paddingTop: '20px',
     display: 'inline-block',
     width: '50%',
   },
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     width: '45%'
   },
 
+  // Checkbox
   checkboxContainer: {
     textAlign: 'center',    
   },
@@ -68,10 +70,12 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     cursor: 'pointer',    
     backgroundColor: '#001C42',
-    margin: '8px 8px 0 0',
+    margin: '8px 12px 0 0',
     color: '#FFFFFF',
     border: 'solid #001C42',
     borderRadius: '8px',
+    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
+
   },
 
  checkboxUnchecked: {
@@ -81,10 +85,12 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     cursor: 'pointer',    
     backgroundColor: '#FFFFFF',
-    margin: '8px 8px 0 0',
+    margin: '8px 12px 0 0',
     color: '#001C42',
     border: 'solid #001C42',
     borderRadius: '8px',
+    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
+
   },
 
   checkboxLabel: {
@@ -96,6 +102,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
 
+  // Sort By
   sortBy: {
     textAlign: 'left',
     float: 'right',
@@ -111,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF !important',
     textAlign: 'center',
     fontWeight: 'bold !important',
-
+    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
   },
 
   sortIcon: {
@@ -132,6 +139,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '20px 20px 0 0',
     backgroundImage: 'linear-gradient(#001C42, #002774)',
     color: '#FFFFFF',
+    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
   },
 
   ticketPreviewHeader: {
@@ -141,10 +149,11 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '15px',
     paddingRight: '15px',
     marginTop: '15px', 
-    fontSize: '1.05em'
+    fontSize: '1.05em',
   },
 
   ticketPreviewImageContainer: {
+    float: 'left',
     height: '300px',
     width: '300px',
     position: 'relative',
@@ -161,13 +170,28 @@ const useStyles = makeStyles((theme) => ({
   },
 
   ticketPreviewInfo: {
-    height: '70px',
-    width: '100%',
+    height: '60px',
+    width: '270px',
     display: 'flex',
-    justifyContent: 'space-between',
+    padding: '20px 15px 0 15px',
     borderRadius: '0 0 20px 20px',
     backgroundColor: '#001C42',
-    verticalAlign: 'middle',
+  },
+
+  ticketPreviewPrice: {
+    paddingTop: '10px',
+    height: '30px',
+    width: '40px',
+    backgroundColor: '#001C42',
+    color: 'gold',
+    borderRadius: '100px',
+    border: 'solid gold',
+    fontWeight: 'bold',
+  },
+
+  ticketPreviewTopPrize: {
+    paddingLeft: '20px'
+
   },
   
 }));

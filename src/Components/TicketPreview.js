@@ -10,17 +10,19 @@ function TicketPreview(data){
         <span>#{data.data.number}</span>
       </div>
       <div className={classes.ticketPreviewImageContainer}>
-        <img className={classes.ticketPreviewImage} src={data.data.pic} alt={data.data.name}/>
+        <img className={classes.ticketPreviewImage} alt={data.data.name}/>
       </div>
       <div className={classes.ticketPreviewInfo}>
-        <span>${data.data.price} </span> 
-        <span>{data.data.name} </span> 
-        <span>{data.data.time.split(" ")[0]}</span>
+        <span className={classes.ticketPreviewPrice}>${data.data.price}</span>
+        <div>
+          <span className={classes.ticketPreviewTopPrize}>Top Prize: $100,000</span> 
+          <br/>
+          <span className={classes.ticketPreviewTopPrize}>100 top prizes remaining</span> 
+          <br/>
+        </div>
       </div>
     </div>
   )
 }
 
 export default TicketPreview;
-
-// 
