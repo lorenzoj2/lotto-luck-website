@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   sortBy: {
     textAlign: 'left',
     float: 'right',
-    width: '40%',
+    width: '55%',
     height: '100%',
     backgroundColor: '#fffff',
   },

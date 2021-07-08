@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useStyles from '../styles'
 
-function Checkbox(price){
+function Checkbox(props){
   const classes = useStyles();
   const [isChecked, setIsChecked] = useState(false);
 
@@ -10,8 +10,8 @@ function Checkbox(price){
   }
 
   return(
-    <div id={price.price} onClick={(e) => handleCheckbox(e)} className={isChecked ? classes.checkboxChecked : classes.checkboxUnchecked}>
-      <span id={price.price} className={classes.checkboxLabel}> ${price.price}</span>
+    <div id={props.price} onClick={(e) => handleCheckbox(e)} className={isChecked ? classes.checkboxChecked : classes.checkboxUnchecked}>
+      <span id={props.price} className={classes.checkboxLabel}> ${props.price}</span>
     </div>
   );
 }

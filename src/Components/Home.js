@@ -5,15 +5,12 @@ import TicketContainer from './TicketContainer'
 
 function Home() {
   const [selectedPrices, setSelectedPrices] = useState([]);
-
-  const updatedFilteredPrices = (prices) => {
-    setSelectedPrices(prices)
-  }
+  const [sortBy, setSortBy] = useState(0)
   
   return (
     <div>
-      <Search onPricesUpdate={updatedFilteredPrices}/>
-      <TicketContainer updatedPrices={selectedPrices} />
+      <Search onPricesUpdate={setSelectedPrices} onSortByUpdate={setSortBy}/>
+      <TicketContainer updatedPrices={selectedPrices} updatedSortBy={sortBy} />
     </div>
   );
 }

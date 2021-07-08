@@ -8,10 +8,11 @@ import Select from '@material-ui/core/Select';
 import useStyles from '../styles'
 import Checkbox from './Checkbox'
 
-function Search({onPricesUpdate}) {
+function Search(props) {
   const classes = useStyles();
 
   const [filteredPrices, setFilteredPrices] = useState([]);
+  const [sortByValue, setSortByValue] = useState(0);
 
   function filterPrices(e){
     if(filteredPrices.includes(e.target.id)){
@@ -21,14 +22,18 @@ function Search({onPricesUpdate}) {
       }
     }
     else{
-      filteredPrices.push(e.target.id)
+      filteredPrices.push(e.target.id);
     }
 
-    setFilteredPrices(filteredPrices.sort())
+    setFilteredPrices(filteredPrices.sort());
+    var updatedPrices = filteredPrices.slice();
+    props.onPricesUpdate(updatedPrices);
+  }
 
-    var updatedPrices = filteredPrices.slice()
-
-    onPricesUpdate(updatedPrices)
+  function handleSortBy(e){
+    setSortByValue(e.target.value);
+    var updatedSort = e.target.value
+    props.onSortByUpdate(updatedSort);
   }
 
   return (
@@ -56,13 +61,11 @@ function Search({onPricesUpdate}) {
 
         <div className={classes.sortBy}>
           <div>Sort By</div>
-          <Select defaultValue={1} fullWidth inputProps={{classes: {icon: classes.sortIcon,},}} className={classes.sortBar}>
-            <option value={1}>Game Name (A-Z)</option>
-            <option value={2}>Game Name (Z-A)</option>
-            <option value={3}>Price: Low to High</option>
-            <option value={4}>Price: High to Low</option>
-            <option value={5}>Top Prizes Remaining: Low to High</option>
-            <option value={6}>Top Prizes Remaining: High to Low</option>
+          <Select native value={sortByValue} onChange={(e) => handleSortBy(e)} fullWidth inputProps={{classes: {icon: classes.sortIcon,},}} className={classes.sortBar}>
+            <option value={0}>Game Name (A-Z)</option>
+            <option value={1}>Game Name (Z-A)</option>
+            <option value={2}>Price: Low to High</option>
+            <option value={3}>Price: High to Low</option>
           </Select>
         </div>
       </div>

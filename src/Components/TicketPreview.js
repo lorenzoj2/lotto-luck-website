@@ -1,19 +1,19 @@
 import useStyles from '../styles'
 
-function TicketPreview(data){
+function TicketPreview(props){
   const classes = useStyles()
 
   return(
     <div className={classes.ticketPreview}>
       <div className={classes.ticketPreviewHeader}>
-        <span style={{whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden', width: '75%', textAlign: 'left'}}><b>{data.data.name}</b></span>
-        <span>#{data.data.number}</span>
+        <span style={{whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden', width: '75%', textAlign: 'left'}}><b>{props.data.name}</b></span>
+        <span>#{props.data.number}</span>
       </div>
       <div className={classes.ticketPreviewImageContainer}>
-        <img className={classes.ticketPreviewImage} alt={data.data.name}/>
+        <img className={classes.ticketPreviewImage} alt={props.data.name}/>
       </div>
       <div className={classes.ticketPreviewInfo}>
-        <span className={classes.ticketPreviewPrice}>${data.data.price}</span>
+        <span className={classes.ticketPreviewPrice}>${props.data.price}</span>
         <div>
           <span className={classes.ticketPreviewTopPrize}>Top Prize: $100,000</span> 
           <br/>
