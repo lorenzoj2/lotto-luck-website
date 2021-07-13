@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 
   navBar: {
     backgroundColor: '#C4CED3',
-    color: '#001C43',
     width: '100%',
     overflow: 'auto',
     textAlign: 'center',
@@ -139,8 +138,6 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF',
     boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
     cursor: 'pointer',    
-
-    
   },
 
   ticketPreviewHeader: {

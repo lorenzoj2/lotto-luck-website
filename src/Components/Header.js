@@ -1,4 +1,3 @@
-import { Typography } from '@material-ui/core';
 import { Link } from "react-router-dom";
 
 import logo from '../logo.png'
@@ -16,7 +15,6 @@ function Header() {
       </div>
       <div className={classes.navBar}>
         <div className={classes.navBarLink}>
-          <Typography variant='h6'>About</Typography>
         </div>
       </div>
     </div>

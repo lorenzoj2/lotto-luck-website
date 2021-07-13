@@ -2,14 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './Components/Home';
+import Header from './Components/Header';
+import Ticket from './Components/Ticket'
 import reportWebVitals from './reportWebVitals';
 
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Home />
-  </BrowserRouter>,
+  <React.StrictMode>
+    <BrowserRouter>
+      <Header />
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route path='/tickets/:id'>
+            <Ticket />
+          </Route>
+          <Route>
+            Sorry, this page doesn't exist.
+          </Route>
+        </Switch>
+    </BrowserRouter>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

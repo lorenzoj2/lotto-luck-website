@@ -1,31 +1,22 @@
 import React, { useState } from 'react';
 
-import Header from './Header';
 import Search from './Search';
 import TicketContainer from './TicketContainer';
-import Ticket from './Ticket';
-
-import { Switch, Route} from "react-router-dom";
+import useStyles from '../styles'
 
 function Home() {
   const [selectedPrices, setSelectedPrices] = useState([]);
-  const [sortBy, setSortBy] = useState(0)
+  const [sortBy, setSortBy] = useState(0);
+  const classes = useStyles();
+
+  if(selectedPrices.length <= 0){
+    setSelectedPrices(['1', '2', '3', '5', '10', '20', '30'])
+  }
 
   return (
-    <div>    
-      <Header />
-      <Switch>
-        <Route exact path='/'>
-          <Search onPricesUpdate={setSelectedPrices} onSortByUpdate={setSortBy}/>
-          <TicketContainer updatedPrices={selectedPrices} updatedSortBy={sortBy} />
-        </Route>
-        <Route path='/tickets/:id'>
-          <Ticket />
-        </Route>
-        <Route>
-          Sorry, this page doesn't exist.
-        </Route>
-      </Switch>
+    <div className={classes.home}>    
+      <Search onPricesUpdate={setSelectedPrices} onSortByUpdate={setSortBy}/>
+      <TicketContainer updatedPrices={selectedPrices} updatedSortBy={sortBy} />
     </div>
   );
 }

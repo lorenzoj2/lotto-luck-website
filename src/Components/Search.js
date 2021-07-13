@@ -65,10 +65,10 @@ function Search(props) {
         <div className={classes.sortBy}>
           <div>Sort by</div>
           <Select variant='outlined' native value={sortByValue} onChange={(e) => handleSortBy(e)} autoWidth className={classes.sortBar}>
-            <option value={0}>Game Name (A - Z)</option>
-            <option value={1}>Game Name (Z - A)</option>
-            <option value={2}>Price: Low to High</option>
-            <option value={3}>Price: High to Low</option>
+            <option value={'nameAsc'}>Game Name (A - Z)</option>
+            <option value={'nameDesc'}>Game Name (Z - A)</option>
+            <option value={'priceAsc'}>Price: Low to High</option>
+            <option value={'priceDesc'}>Price: High to Low</option>
           </Select>
         </div>
 
@@ -78,7 +78,6 @@ function Search(props) {
             <MenuItem value={1}><ViewModuleIcon /></MenuItem>
             <MenuItem value={2}><ListIcon /></MenuItem>
           </Select>
-
         </div>
       </div>
 

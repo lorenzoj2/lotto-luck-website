@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 function TicketPreview(props){
   const classes = useStyles()
-  const imgPath = './img/oh_'.concat(props.data.price,'_', props.data.number, '.jpg')
   
   return(
     <div className={classes.ticketPreview}>
@@ -13,7 +12,7 @@ function TicketPreview(props){
         <span>#{props.data.number}</span>
       </div>
       <div className={classes.ticketPreviewImageContainer}>
-        <img src={imgPath} className={classes.ticketPreviewImage} alt={props.data.name}/>
+        <img src={`/img/oh_${props.data.price}_${props.data.number}.jpg`} className={classes.ticketPreviewImage} alt={props.data.name.concat(' Scratch Off Ticket Preview')}/>
       </div>
       <div className={classes.ticketPreviewInfo}>
         <span className={classes.ticketPreviewPrice}>${props.data.price}</span>

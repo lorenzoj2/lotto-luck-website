@@ -8,10 +8,13 @@ function TicketContainer(props)
 {
   const classes = useStyles();
   const [data, setData] = useState([])
-    
+  const [displaySize, setDisplaySize] = useState(16)
+  const totalLength = data.filter(ticket => props.updatedPrices.includes(ticket.price)).length
+  const sliceLength = data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).length
+
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get(process.env.REACT_APP_LOTTO_LUCK_DEV_IP)
+      const request = await axios.get(process.env.REACT_APP_DEV)
       setData(request.data)
       return request;
     }
@@ -19,7 +22,6 @@ function TicketContainer(props)
   }, []);
 
   // Sort by functions
-
   function sortNameAsc(a, b){
     if(a.name < b.name) return -1;
     if(a.name > b.name) return 1;
@@ -38,33 +40,51 @@ function TicketContainer(props)
   }
 
   switch(props.updatedSortBy){
-    case '0':
+    case 'nameAsc':
       data.sort(sortNameAsc);
       break;
-    case '1':
+    case 'nameDesc':
       data.sort(sortNameDesc);
       break;
-    case '2':
+    case 'priceAsc':
       data.sort(sortPriceAsc);
       break;
-    case '3':
+    case 'priceDesc':
       data.sort(sortPriceDesc);
       break;
     default: 
       data.sort(sortNameAsc);
   }
 
+  function loadMore(){
+    if(displaySize + 32 < totalLength){
+      setDisplaySize(displaySize + 32)
+    }
+    else{
+      setDisplaySize(totalLength)
+    }
+  }
 
   return(
-    <div className={classes.ticketContainer}>
-      {data.map(ticket => (
-        props.updatedPrices.length > 0 ? 
-          props.updatedPrices.includes(ticket.price) &&
-          <TicketPreview key={ticket.id} data={ticket}/> 
-          :
-          <TicketPreview key={ticket.id} data={ticket}/> 
-        ))}
-    </div>
+    <>
+      <div className={classes.ticketContainer}>
+        {data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).map(ticket => (
+            <TicketPreview key={ticket.id} data={ticket}/> 
+          ))}
+      </div>
+      <div style={{textAlign: 'center', paddingBottom: '30px'}}>
+        <div>
+          {sliceLength < totalLength ?
+          <button onClick={() => loadMore()}>Load More</button>
+           :
+          <div/>
+          }
+          <br />
+          <br />
+        </div>
+        Displaying {sliceLength} out of {totalLength} results
+      </div>
+    </>
   )
 }
 
