@@ -4,6 +4,9 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import SearchIcon from '@material-ui/icons/Search';
 import Select from '@material-ui/core/Select';
+import ListIcon from '@material-ui/icons/List';
+import MenuItem from '@material-ui/core/MenuItem';
+import ViewModuleIcon from '@material-ui/icons/ViewModule';
 
 import useStyles from '../styles'
 import Checkbox from './Checkbox'
@@ -60,15 +63,26 @@ function Search(props) {
         </div>
 
         <div className={classes.sortBy}>
-          <div>Sort By</div>
-          <Select native value={sortByValue} onChange={(e) => handleSortBy(e)} fullWidth inputProps={{classes: {icon: classes.sortIcon,},}} className={classes.sortBar}>
-            <option value={0}>Game Name (A-Z)</option>
-            <option value={1}>Game Name (Z-A)</option>
+          <div>Sort by</div>
+          <Select variant='outlined' native value={sortByValue} onChange={(e) => handleSortBy(e)} autoWidth className={classes.sortBar}>
+            <option value={0}>Game Name (A - Z)</option>
+            <option value={1}>Game Name (Z - A)</option>
             <option value={2}>Price: Low to High</option>
             <option value={3}>Price: High to Low</option>
           </Select>
         </div>
+
+        <div className={classes.defaultView}>
+          <div>Default View</div>
+          <Select defaultValue={1} variant='outlined' fullWidth className={classes.sortBar}>
+            <MenuItem value={1}><ViewModuleIcon /></MenuItem>
+            <MenuItem value={2}><ListIcon /></MenuItem>
+          </Select>
+
+        </div>
       </div>
+
+  
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({  
   // Header
   navLogo: {
-    backgroundColor: '#002775',
+    backgroundColor: '#001C43',
     textAlign: 'center',
     height: '100px',
     width: '100%',
@@ -15,11 +15,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
   navBar: {
-    backgroundColor: '#001C43',
-    color: '#FFFFFF',
+    backgroundColor: '#C4CED3',
+    color: '#001C43',
     width: '100%',
     overflow: 'auto',
     textAlign: 'center',
+    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
   },
 
   navBarLink: {
@@ -52,13 +53,13 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
   },
 
+  // Checkboxes
   priceFilter: {
     textAlign: 'left',
     float: 'left',
-    width: '45%'
+    width: '40%'
   },
 
-  // Checkbox
   checkboxContainer: {
     textAlign: 'center',    
   },
@@ -70,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     cursor: 'pointer',    
     backgroundColor: '#001C42',
-    margin: '8px 12px 0 0',
+    margin: '12px 12px 0 0',
     color: '#FFFFFF',
     border: 'solid #001C42',
     borderRadius: '8px',
@@ -85,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     cursor: 'pointer',    
     backgroundColor: '#FFFFFF',
-    margin: '8px 12px 0 0',
+    margin: '12px 12px 0 0',
     color: '#001C42',
     border: 'solid #001C42',
     borderRadius: '8px',
@@ -105,28 +106,25 @@ const useStyles = makeStyles((theme) => ({
   // Sort By
   sortBy: {
     textAlign: 'left',
-    float: 'right',
-    width: '55%',
+    float: 'left',
+    width: '30%',
     height: '100%',
-    backgroundColor: '#fffff',
   },
 
   sortBar: {
-    width: '100%',
-    margin: '8px 8px 0 0',
-    backgroundColor: '#001C42',
-    color: '#FFFFFF !important',
-    textAlign: 'center',
-    fontWeight: 'bold !important',
+    height: '60px',
+    margin: '12px 8px 0 0',
     boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
   },
 
-  sortIcon: {
-    fill: '#FFFFFF !important',
+  defaultView: {
+    textAlign: 'left',
+    float: 'left',
   },
 
   // Tickets 
   ticketContainer: {
+    marginBottom: '40px',
     textAlign: 'center',
   },
 
@@ -140,6 +138,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: 'linear-gradient(#001C42, #002774)',
     color: '#FFFFFF',
     boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
+    cursor: 'pointer',    
+
+    
   },
 
   ticketPreviewHeader: {
@@ -150,6 +151,15 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '15px',
     marginTop: '15px', 
     fontSize: '1.05em',
+  },
+
+  ticketPreviewName: {
+    whiteSpace: 'nowrap', 
+    textOverflow: 'ellipsis', 
+    overflow: 'hidden', 
+    width: '75%', 
+    textAlign: 'left',
+    fontWeight: 'bold',
   },
 
   ticketPreviewImageContainer: {
@@ -167,6 +177,8 @@ const useStyles = makeStyles((theme) => ({
     bottom: '0',
     left: '60px',
     objectFit: 'fill',
+    border: 'solid #001C42',
+    borderBottom: 'none',
   },
 
   ticketPreviewInfo: {
@@ -191,9 +203,22 @@ const useStyles = makeStyles((theme) => ({
 
   ticketPreviewTopPrize: {
     paddingLeft: '20px'
-
   },
   
+  // Router
+  link: {
+    textDecoration: 'none',
+    color: '#FFFFFF',
+
+    '&.link': {
+      color: '#FFFFFF',
+    },
+    '&.hover': {
+      color: 'black',
+    },
+  },
+
+
 }));
 
 export default useStyles;

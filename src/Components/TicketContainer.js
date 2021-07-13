@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from '../axios';
-import useStyles from '../styles'
 
-import TicketPreview from './TicketPreview'
+import useStyles from '../styles';
+import TicketPreview from './TicketPreview';
 
 function TicketContainer(props)
 {
