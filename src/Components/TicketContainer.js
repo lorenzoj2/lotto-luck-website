@@ -9,8 +9,16 @@ function TicketContainer(props)
   const classes = useStyles();
   const [data, setData] = useState([])
   const [displaySize, setDisplaySize] = useState(16)
-  const totalLength = data.filter(ticket => props.updatedPrices.includes(ticket.price)).length
-  const sliceLength = data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).length
+  const totalLength = props.updatedSearch ? 
+    data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
+    .filter(ticket => props.updatedPrices.includes(ticket.price)).length
+    : 
+    data.filter(ticket => props.updatedPrices.includes(ticket.price)).length
+  const sliceLength = props.updatedSearch ?
+    data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
+    .filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).length
+    : 
+    data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).length
 
   useEffect(() => {
     async function fetchData() {
@@ -56,9 +64,10 @@ function TicketContainer(props)
       data.sort(sortNameAsc);
   }
 
+  // Load more tickets
   function loadMore(){
-    if(displaySize + 32 < totalLength){
-      setDisplaySize(displaySize + 32)
+    if(displaySize + 16 < totalLength){
+      setDisplaySize(displaySize + 16)
     }
     else{
       setDisplaySize(totalLength)
@@ -68,17 +77,19 @@ function TicketContainer(props)
   return(
     <>
       <div className={classes.ticketContainer}>
-        {data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).map(ticket => (
+        {props.updatedSearch ?
+          data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
+          .filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).map(ticket => (
+            <TicketPreview key={ticket.id} data={ticket}/> 
+          ))
+          :
+          data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).map(ticket => (
             <TicketPreview key={ticket.id} data={ticket}/> 
           ))}
       </div>
       <div style={{textAlign: 'center', paddingBottom: '30px'}}>
         <div>
-          {sliceLength < totalLength ?
-          <button onClick={() => loadMore()}>Load More</button>
-           :
-          <div/>
-          }
+          {sliceLength < totalLength ? <button onClick={() => loadMore()}>Load More</button> : <div/>}
           <br />
           <br />
         </div>

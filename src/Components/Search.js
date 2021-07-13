@@ -16,6 +16,7 @@ function Search(props) {
 
   const [filteredPrices, setFilteredPrices] = useState([]);
   const [sortByValue, setSortByValue] = useState(0);
+  const [search, setSearch] = useState('')
 
   function filterPrices(e){
     if(filteredPrices.includes(e.target.id)){
@@ -35,8 +36,14 @@ function Search(props) {
 
   function handleSortBy(e){
     setSortByValue(e.target.value);
-    var updatedSort = e.target.value
+    var updatedSort = e.target.value;
     props.onSortByUpdate(updatedSort);
+  }
+
+  function handleSearch(e){
+    setSearch(e.target.value)
+    var updatedSearch = e.target.value;
+    props.onSearchUpdate(updatedSearch)
   }
 
   return (
@@ -45,7 +52,7 @@ function Search(props) {
         <Typography variant='h5'>Ohio Lottery Scratch-Off Tickets</Typography>
       </div>
       <div className={classes.searchBar}>
-        <OutlinedInput placeholder='Search Ticket Name or Number' fullWidth endAdornment={<InputAdornment position='end'><SearchIcon fontSize='default' /></InputAdornment>} />
+        <OutlinedInput value={search} onChange={(e) => handleSearch(e)}placeholder='Search Ticket Name or Number' fullWidth endAdornment={<InputAdornment position='end'><SearchIcon fontSize='default' /></InputAdornment>} />
       </div>
       <div />
       <div className={classes.searchFilters}>

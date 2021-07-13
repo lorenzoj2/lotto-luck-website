@@ -23,7 +23,7 @@ function Ticket(){
         <hr/>
         {data.length > 0 ?
         <div>
-          <img src={`/img/oh_${data[0].price}_${data[0].number}.jpg`} alt={data[0].name.concat( ' Scratch Off Ticket')} style={{height: '40vh', padding: '4vw'}}/>
+          <img src={`/img/oh_${data[0].price}_${data[0].number}.jpg`} alt={data[0].name.concat( ' Scratch Off Ticket')} style={{maxHeight: '40vh', maxWidth: '60vw', padding: '4vw'}}/>
           <hr/>
           Name: {data[0].name }
           <hr/>

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({  
   // Header
   navLogo: {
-    backgroundColor: '#001C43',
+    backgroundImage: 'linear-gradient(#660000, #bb0000)',
     textAlign: 'center',
     height: '100px',
     width: '100%',
@@ -15,11 +15,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   navBar: {
-    backgroundColor: '#C4CED3',
+    backgroundColor: '#666666',
     width: '100%',
     overflow: 'auto',
     textAlign: 'center',
-    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
   },
 
   navBarLink: {
@@ -37,7 +36,10 @@ const useStyles = makeStyles((theme) => ({
   searchBar: {
     display: 'inline-block',
     width: '50%',
-    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
+    boxShadow: '0 3px 10px rgb(40 0 0 / 0.2)',
+     '@media only screen and (max-width: 600px)': {
+      width: '80%',
+    },
   },
 
   searchTitle: {
@@ -50,13 +52,20 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '20px',
     display: 'inline-block',
     width: '50%',
+    '@media only screen and (max-width: 600px)': {
+      width: '80%',
+    },
   },
 
   // Checkboxes
   priceFilter: {
     textAlign: 'left',
     float: 'left',
-    width: '40%'
+    width: '40%',
+    '@media only screen and (max-width: 600px)': {
+      width: '100%',
+      paddingBottom: '20px'
+    },
   },
 
   checkboxContainer: {
@@ -69,12 +78,12 @@ const useStyles = makeStyles((theme) => ({
     width: '50px',
     position: 'relative',
     cursor: 'pointer',    
-    backgroundColor: '#001C42',
+    backgroundColor: '#bb0000',
     margin: '12px 12px 0 0',
     color: '#FFFFFF',
-    border: 'solid #001C42',
+    border: 'solid #bb0000',
     borderRadius: '8px',
-    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
+    boxShadow: '0 3px 10px rgb(40 0 0 / 0.2)',
 
   },
 
@@ -85,12 +94,11 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     cursor: 'pointer',    
     backgroundColor: '#FFFFFF',
+    color: '#660000',
     margin: '12px 12px 0 0',
-    color: '#001C42',
-    border: 'solid #001C42',
+    border: 'solid #bb0000',
     borderRadius: '8px',
-    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
-
+    boxShadow: '0 3px 10px rgb(40 0 0 / 0.2)',
   },
 
   checkboxLabel: {
@@ -108,12 +116,15 @@ const useStyles = makeStyles((theme) => ({
     float: 'left',
     width: '30%',
     height: '100%',
+    '@media only screen and (max-width: 600px)': {
+      width: '65%',
+    },
   },
 
   sortBar: {
     height: '60px',
     margin: '12px 8px 0 0',
-    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
+    boxShadow: '0 3px 10px rgb(40 0 0 / 0.2)',
   },
 
   defaultView: {
@@ -134,9 +145,9 @@ const useStyles = makeStyles((theme) => ({
     width: '300px',
     height: '392px',
     borderRadius: '20px 20px 0 0',
-    backgroundImage: 'linear-gradient(#001C42, #002774)',
+    backgroundImage: 'linear-gradient(#660000, #bb0000)',
     color: '#FFFFFF',
-    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
+    boxShadow: '0 3px 10px rgb(40 0 0 / 0.2)',
     cursor: 'pointer',    
   },
 
@@ -174,7 +185,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: '0',
     left: '60px',
     objectFit: 'fill',
-    border: 'solid #001C42',
+    border: 'solid #660000',
     borderBottom: 'none',
   },
 
@@ -184,18 +195,17 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     padding: '20px 15px 0 15px',
     borderRadius: '0 0 20px 20px',
-    backgroundColor: '#001C42',
+    backgroundColor: '#660000',
   },
 
   ticketPreviewPrice: {
     paddingTop: '10px',
     height: '30px',
     width: '40px',
-    backgroundColor: '#001C42',
     color: 'gold',
     borderRadius: '100px',
-    border: 'solid gold',
-    fontWeight: 'bold',
+    border: 'solid gold 2px',
+    fontWeight: '750',
   },
 
   ticketPreviewTopPrize: {
@@ -214,8 +224,6 @@ const useStyles = makeStyles((theme) => ({
       color: 'black',
     },
   },
-
-
 }));
 
 export default useStyles;
