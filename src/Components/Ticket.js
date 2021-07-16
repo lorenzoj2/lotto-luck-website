@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import React, {useState, useEffect} from 'react';
+
 import axios from '../axios';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function Ticket(){
   const {id} = useParams()
@@ -14,16 +16,16 @@ function Ticket(){
     }
     fetchData();
   }, [id]);
-
+  
   return(
-    <div>
+    <div style={{width: '100%', minHeight: '80vh'}}>
       <div>
-        <hr/>
-        Ticket Info
-        <hr/>
         {data.length > 0 ?
         <div>
-          <img src={`/img/oh_${data[0].price}_${data[0].number}.jpg`} alt={data[0].name.concat( ' Scratch Off Ticket')} style={{maxHeight: '40vh', maxWidth: '60vw', padding: '4vw'}}/>
+         <hr/>
+          Ticket Info
+          <hr/>
+          <img src={`/img/oh_${data[0].price}_${data[0].number}.jpg`} alt={data[0].name.concat( 'Scratch Off Ticket')} style={{maxHeight: '40vh', maxWidth: '60vw', padding: '4vw'}}/>
           <hr/>
           Name: {data[0].name }
           <hr/>
@@ -33,7 +35,9 @@ function Ticket(){
           <hr/>
         </div>
         :
-        <div></div>
+        <div style={{textAlign: 'center', margin: '26vh 0'}}>
+          <CircularProgress style={{width: '25%', height: '25%'}} color='black'/>
+        </div>
         }
       </div>
     </div>

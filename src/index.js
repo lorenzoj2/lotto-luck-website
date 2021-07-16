@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Home from './Components/Home';
 import Header from './Components/Header';
-import Ticket from './Components/Ticket'
+import Home from './Components/Home';
+import Ticket from './Components/Ticket';
+import Footer from './Components/Footer';
 import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -12,6 +13,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Header />
+      <div style={{'&.after': 'block'}}>
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -23,6 +25,8 @@ ReactDOM.render(
             Sorry, this page doesn't exist.
           </Route>
         </Switch>
+      </div>
+      <Footer />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

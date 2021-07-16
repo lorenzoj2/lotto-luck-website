@@ -7,13 +7,15 @@ import TicketPreview from './TicketPreview';
 function TicketContainer(props)
 {
   const classes = useStyles();
-  const [data, setData] = useState([])
-  const [displaySize, setDisplaySize] = useState(16)
+  const [data, setData] = useState([]);
+  const [displaySize, setDisplaySize] = useState(16);
+
   const totalLength = props.updatedSearch ? 
     data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
     .filter(ticket => props.updatedPrices.includes(ticket.price)).length
     : 
     data.filter(ticket => props.updatedPrices.includes(ticket.price)).length
+    
   const sliceLength = props.updatedSearch ?
     data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
     .filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).length
@@ -74,9 +76,11 @@ function TicketContainer(props)
     }
   }
 
+  console.log(props.updatedView)
+
   return(
     <>
-      <div className={classes.ticketContainer}>
+    <div className={classes.ticketContainer}>
         {props.updatedSearch ?
           data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
           .filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).map(ticket => (
@@ -87,14 +91,14 @@ function TicketContainer(props)
             <TicketPreview key={ticket.id} data={ticket}/> 
           ))}
       </div>
-      <div style={{textAlign: 'center', paddingBottom: '30px'}}>
+    <div className={classes.loadResults}>
         <div>
-          {sliceLength < totalLength ? <button onClick={() => loadMore()}>Load More</button> : <div/>}
+          {sliceLength < totalLength ? <button className={classes.loadMore} onClick={() => loadMore()}>Load More</button> : <div/>}
           <br />
           <br />
         </div>
         Displaying {sliceLength} out of {totalLength} results
-      </div>
+    </div>
     </>
   )
 }

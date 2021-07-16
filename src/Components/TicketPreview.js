@@ -1,6 +1,7 @@
 import useStyles from '../styles'
 import { Link } from "react-router-dom";
 
+
 function TicketPreview(props){
   const classes = useStyles()
   
@@ -16,12 +17,11 @@ function TicketPreview(props){
       </div>
       <div className={classes.ticketPreviewInfo}>
         <span className={classes.ticketPreviewPrice}>${props.data.price}</span>
-        <div>
-          <span className={classes.ticketPreviewTopPrize}>Top Prize: $100,000</span> 
+          <div className={classes.ticketPreviewTopPrize}>
+          <b>Top Prize:</b> {Object.keys(JSON.parse(props.data.prize))[0]} 
           <br/>
-          <span className={classes.ticketPreviewTopPrize}>100 top prizes remaining</span> 
-          <br/>
-        </div>
+          <b>Odds of Winning:</b> 1 in {props.data.odds}
+          </div> 
       </div>
       </Link>
     </div>

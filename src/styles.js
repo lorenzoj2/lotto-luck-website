@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
   navLogo: {
     backgroundImage: 'linear-gradient(#660000, #bb0000)',
     textAlign: 'center',
-    height: '100px',
+    height: '90px',
     width: '100%',
   },
 
@@ -26,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
     width: '23%',
     textAlign: 'center',
   },
+  
+  // Home
+  home: {
+    minHeight: '90vh',
+  },
 
   // Search 
   search: {
@@ -35,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
   searchBar: {
     display: 'inline-block',
-    width: '50%',
+    width: '55%',
     boxShadow: '0 3px 10px rgb(40 0 0 / 0.2)',
      '@media only screen and (max-width: 600px)': {
       width: '80%',
@@ -51,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   searchFilters: {
     paddingTop: '20px',
     display: 'inline-block',
-    width: '50%',
+    width: '55%',
     '@media only screen and (max-width: 600px)': {
       width: '80%',
     },
@@ -94,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     cursor: 'pointer',    
     backgroundColor: '#FFFFFF',
-    color: '#660000',
+    color: 'black',
     margin: '12px 12px 0 0',
     border: 'solid #bb0000',
     borderRadius: '8px',
@@ -112,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
 
   // Sort By
   sortBy: {
+    marginLeft: '1vw',
     textAlign: 'left',
     float: 'left',
     width: '30%',
@@ -128,27 +134,33 @@ const useStyles = makeStyles((theme) => ({
   },
 
   defaultView: {
+    marginLeft: '1vw',
     textAlign: 'left',
     float: 'left',
   },
 
   // Tickets 
   ticketContainer: {
-    marginBottom: '40px',
+    margin: '10px 20px 40px 20px',
     textAlign: 'center',
   },
+
+  // ****************************
 
   ticketPreview: {
     display: 'inline-block',
     position: 'relative',
-    margin: '40px 20px',
-    width: '300px',
-    height: '392px',
-    borderRadius: '20px 20px 0 0',
+    margin: '40px 3vh',
+    width: '25%',
+    minWidth: '275px',
+    maxWidth: '80%',
+    height: '3px',
+    minHeight: '392px',
+    borderRadius: '20px',
     backgroundImage: 'linear-gradient(#660000, #bb0000)',
     color: '#FFFFFF',
     boxShadow: '0 3px 10px rgb(40 0 0 / 0.2)',
-    cursor: 'pointer',    
+    cursor: 'pointer',
   },
 
   ticketPreviewHeader: {
@@ -157,7 +169,7 @@ const useStyles = makeStyles((theme) => ({
     height: '10%',
     paddingLeft: '15px',
     paddingRight: '15px',
-    marginTop: '15px', 
+    paddingTop: '15px', 
     fontSize: '1.05em',
   },
 
@@ -171,37 +183,35 @@ const useStyles = makeStyles((theme) => ({
   },
 
   ticketPreviewImageContainer: {
-    float: 'left',
-    height: '300px',
-    width: '300px',
+    height: '70%',
     position: 'relative',
   },
 
   ticketPreviewImage: {
-    width: '180px',
-    minHeight: '200px',
-    maxHeight: '300px',
+    width: '55%',
+    minHeight: '50%',
+    maxHeight: '95%',
     position: 'absolute',
     bottom: '0',
-    left: '60px',
+    left: '21.5%',
     objectFit: 'fill',
     border: 'solid #660000',
     borderBottom: 'none',
   },
 
   ticketPreviewInfo: {
-    height: '60px',
-    width: '270px',
+    height: '15%',
     display: 'flex',
-    padding: '20px 15px 0 15px',
+    padding: '10px',
     borderRadius: '0 0 20px 20px',
     backgroundColor: '#660000',
   },
 
   ticketPreviewPrice: {
+    marginTop: '5px',
     paddingTop: '10px',
-    height: '30px',
-    width: '40px',
+    height: '50%',
+    minWidth: '40px',
     color: 'gold',
     borderRadius: '100px',
     border: 'solid gold 2px',
@@ -209,9 +219,41 @@ const useStyles = makeStyles((theme) => ({
   },
 
   ticketPreviewTopPrize: {
-    paddingLeft: '20px'
+    margin: '1vh 0 0 2vh',
+    textAlign: 'left', 
+    whiteSpace: 'nowrap', 
+    textOverflow: 'ellipsis', 
+    overflow: 'hidden', 
   },
-  
+
+  // ****************************
+
+  loadResults: {
+    textAlign: 'center', 
+    paddingBottom: '25px',
+  },
+
+  loadMore: {
+    width: '350px',
+    height: '5vh',
+    borderRadius: '100px',
+    border: 'solid #660000',
+    backgroundImage: 'linear-gradient(#bb0000, #660000)',
+    color: 'gold',
+    fontWeight: '900',
+    fontSize: '1em'
+  },
+
+  // Footer
+  footer: {
+    height: '10vh',
+    position: 'relative',
+    left: '0',
+    bottom: '0',
+    width: '100%',
+    backgroundImage: 'linear-gradient(#bb0000, #660000)',
+  },
+
   // Router
   link: {
     textDecoration: 'none',

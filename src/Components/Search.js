@@ -4,9 +4,6 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import SearchIcon from '@material-ui/icons/Search';
 import Select from '@material-ui/core/Select';
-import ListIcon from '@material-ui/icons/List';
-import MenuItem from '@material-ui/core/MenuItem';
-import ViewModuleIcon from '@material-ui/icons/ViewModule';
 
 import useStyles from '../styles'
 import Checkbox from './Checkbox'
@@ -17,6 +14,13 @@ function Search(props) {
   const [filteredPrices, setFilteredPrices] = useState([]);
   const [sortByValue, setSortByValue] = useState(0);
   const [search, setSearch] = useState('')
+  const [view, setView] = useState('grid')
+
+  function handleSearch(e){
+    setSearch(e.target.value)
+    var updatedSearch = e.target.value;
+    props.onSearchUpdate(updatedSearch)
+  }
 
   function filterPrices(e){
     if(filteredPrices.includes(e.target.id)){
@@ -40,11 +44,10 @@ function Search(props) {
     props.onSortByUpdate(updatedSort);
   }
 
-  function handleSearch(e){
-    setSearch(e.target.value)
-    var updatedSearch = e.target.value;
-    props.onSearchUpdate(updatedSearch)
-  }
+  function handleView(e){
+    setView(e.target.value)
+    props.onViewUpdate(e.target.value)
+  }  
 
   return (
     <div className={classes.search}>
@@ -52,7 +55,7 @@ function Search(props) {
         <Typography variant='h5'>Ohio Lottery Scratch-Off Tickets</Typography>
       </div>
       <div className={classes.searchBar}>
-        <OutlinedInput value={search} onChange={(e) => handleSearch(e)}placeholder='Search Ticket Name or Number' fullWidth endAdornment={<InputAdornment position='end'><SearchIcon fontSize='default' /></InputAdornment>} />
+        <OutlinedInput value={search} onChange={(e) => handleSearch(e)} placeholder='Search Ticket Name or Number' fullWidth endAdornment={<InputAdornment position='end'><SearchIcon fontSize='default' /></InputAdornment>} />
       </div>
       <div />
       <div className={classes.searchFilters}>
@@ -81,9 +84,9 @@ function Search(props) {
 
         <div className={classes.defaultView}>
           <div>Default View</div>
-          <Select defaultValue={1} variant='outlined' fullWidth className={classes.sortBar}>
-            <MenuItem value={1}><ViewModuleIcon /></MenuItem>
-            <MenuItem value={2}><ListIcon /></MenuItem>
+          <Select variant='outlined' native value={view} onChange={(e) => handleView(e)} fullWidth className={classes.sortBar}>
+            <option value={'grid'}>Grid</option>
+            <option value={'list'}>List</option>
           </Select>
         </div>
       </div>
