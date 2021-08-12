@@ -13,19 +13,15 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Header />
-      <div style={{'&.after': 'block'}}>
         <Switch>
           <Route exact path='/'>
-            <Home />
+            <Home view='grid' />
           </Route>
-          <Route path='/tickets/:id'>
-            <Ticket />
-          </Route>
+          <Route path='/tickets/:id' component={Ticket} />
           <Route>
             Sorry, this page doesn't exist.
           </Route>
         </Switch>
-      </div>
       <Footer />
     </BrowserRouter>
   </React.StrictMode>,

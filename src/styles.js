@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({  
   // Header
   navLogo: {
-    backgroundImage: 'linear-gradient(#660000, #bb0000)',
+    backgroundImage: 'linear-gradient(#660000, #8C2323)',
     textAlign: 'center',
     height: '90px',
     width: '100%',
@@ -27,9 +27,15 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   
-  // Home
-  home: {
-    minHeight: '90vh',
+  dataGrid: {
+    height: '80vh',
+    width: '80%',
+    margin: '5vh auto',
+  },
+
+  dataGridLink: {
+    textDecoration: 'none',
+    color: 'black',
   },
 
   // Search 
@@ -42,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline-block',
     width: '55%',
     boxShadow: '0 3px 10px rgb(40 0 0 / 0.2)',
-     '@media only screen and (max-width: 600px)': {
+    '@media only screen and (max-width: 600px)': {
       width: '80%',
     },
   },
@@ -83,10 +89,10 @@ const useStyles = makeStyles((theme) => ({
     width: '50px',
     position: 'relative',
     cursor: 'pointer',    
-    backgroundColor: '#bb0000',
+    backgroundColor: '#660000',
     margin: '12px 12px 0 0',
     color: '#FFFFFF',
-    border: 'solid #bb0000',
+    border: 'solid #660000',
     borderRadius: '8px',
     boxShadow: '0 3px 10px rgb(40 0 0 / 0.2)',
 
@@ -101,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#FFFFFF',
     color: 'black',
     margin: '12px 12px 0 0',
-    border: 'solid #bb0000',
+    border: 'solid #660000',
     borderRadius: '8px',
     boxShadow: '0 3px 10px rgb(40 0 0 / 0.2)',
   },
@@ -139,13 +145,12 @@ const useStyles = makeStyles((theme) => ({
     float: 'left',
   },
 
-  // Tickets 
+  // Ticket Preview
   ticketContainer: {
+    minHeight: '90vh',
     margin: '10px 20px 40px 20px',
     textAlign: 'center',
   },
-
-  // ****************************
 
   ticketPreview: {
     display: 'inline-block',
@@ -157,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
     height: '3px',
     minHeight: '392px',
     borderRadius: '20px',
-    backgroundImage: 'linear-gradient(#660000, #bb0000)',
+    backgroundImage: 'linear-gradient(#660000, #8C2323)',
     color: '#FFFFFF',
     boxShadow: '0 3px 10px rgb(40 0 0 / 0.2)',
     cursor: 'pointer',
@@ -226,8 +231,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden', 
   },
 
-  // ****************************
-
   loadResults: {
     textAlign: 'center', 
     paddingBottom: '25px',
@@ -238,10 +241,111 @@ const useStyles = makeStyles((theme) => ({
     height: '5vh',
     borderRadius: '100px',
     border: 'solid #660000',
-    backgroundImage: 'linear-gradient(#bb0000, #660000)',
-    color: 'gold',
+    backgroundImage: 'linear-gradient(#660000, #8C2323)',
+    color: '#FFFFFF',
     fontWeight: '900',
     fontSize: '1em'
+  },
+
+  // Ticket Page
+  ticket: {
+    width: '100%', 
+    height: '100%',
+    minHeight: '75vh',
+  },
+
+  ticketInfo: {
+    margin: '40px auto',
+    display: 'flex',
+    minHeight: '30vh',
+    maxHeight: '60vh',
+    textAlign: 'center',
+    width: '70%',
+    '@media only screen and (max-width: 600px)': {
+      flexDirection: 'column',
+      width: '100%',
+      margin: '5vh 0 15% 0',
+    },
+  },
+
+  ticketImageContainer: {
+    width: '40%',
+    margin: '0 auto',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: 'solid black',
+    backgroundColor: 'grey',
+    '@media only screen and (max-width: 600px)': {
+      marginBottom: '5vh',
+    },
+  },
+
+  ticketImage: {
+    maxWidth: '90%',
+    maxHeight: '90%',
+  },
+
+  ticketStats: {
+    width: '60%',
+    margin: '0 auto',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '2.5vh',
+    '@media only screen and (max-width: 600px)': {
+      width: '100%',
+    },
+  },
+
+  ticketStatsInner: {
+    width: '80%',
+    height: '90%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    fontSize: '1.2em',
+    '@media only screen and (max-width: 600px)': {
+      fontSize: '0.8em',
+    },
+  },
+
+  ticketStat: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+
+  ticketPrizeInfo: {
+    textAlign: 'center',
+  },
+
+  prizeTable: {
+    width: '80%',
+    margin: '0 auto',
+    backgroundColor: 'lightGrey',
+    borderCollapse: 'collapse',
+  },
+
+  prizeTableHeader: {
+    fontSize: '1.4em',
+    backgroundImage: 'linear-gradient(#660000, #8C2323)',
+    color: '#FBFAF5',
+    '@media only screen and (max-width: 600px)': {
+      fontSize: '0.7em',
+    },
+  },
+
+  prizeTableBody: {
+    fontSize: '1.2em',
+    '@media only screen and (max-width: 600px)': {
+      fontSize: '0.5em',
+    },
+  },
+
+  prizeTableData: {
+    border: 'solid black',
+    padding: '10px',
   },
 
   // Footer
@@ -251,7 +355,7 @@ const useStyles = makeStyles((theme) => ({
     left: '0',
     bottom: '0',
     width: '100%',
-    backgroundImage: 'linear-gradient(#bb0000, #660000)',
+    backgroundImage: 'linear-gradient(#8C2323, #660000)',
   },
 
   // Router
@@ -266,6 +370,8 @@ const useStyles = makeStyles((theme) => ({
       color: 'black',
     },
   },
+
+
 }));
 
 export default useStyles;

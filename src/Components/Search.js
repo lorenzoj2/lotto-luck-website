@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { withRouter } from "react-router-dom";
+
 import { Typography } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -13,8 +15,10 @@ function Search(props) {
 
   const [filteredPrices, setFilteredPrices] = useState([]);
   const [sortByValue, setSortByValue] = useState(0);
-  const [search, setSearch] = useState('')
-  const [view, setView] = useState('grid')
+  const[showSortBy, setShowSortBy] = useState(true);
+  const [search, setSearch] = useState('');
+  const [view, setView] = useState(props.location.state ? props.location.state.view : 'grid');
+
 
   function handleSearch(e){
     setSearch(e.target.value)
@@ -47,6 +51,13 @@ function Search(props) {
   function handleView(e){
     setView(e.target.value)
     props.onViewUpdate(e.target.value)
+
+    if(e.target.value === 'grid'){
+      setShowSortBy(true)
+    }
+    else{
+      setShowSortBy(false)
+    }
   }  
 
   return (
@@ -72,7 +83,7 @@ function Search(props) {
           </div>
         </div>
 
-        <div className={classes.sortBy}>
+        <div style={showSortBy ? {} : {pointerEvents: 'none', opacity: '.50',}} className={classes.sortBy}>
           <div>Sort by</div>
           <Select variant='outlined' native value={sortByValue} onChange={(e) => handleSortBy(e)} autoWidth className={classes.sortBar}>
             <option value={'nameAsc'}>Game Name (A - Z)</option>
@@ -96,4 +107,4 @@ function Search(props) {
   );
 }
 
-export default Search;
+export default withRouter(Search);

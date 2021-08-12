@@ -1,35 +1,25 @@
-import React, {useState, useEffect} from 'react';
-import axios from '../axios';
+import React, {useState} from 'react';
 
 import useStyles from '../styles';
 import TicketPreview from './TicketPreview';
 
-function TicketContainer(props)
-{
+
+function TicketContainer(props){
   const classes = useStyles();
   const [data, setData] = useState([]);
   const [displaySize, setDisplaySize] = useState(16);
 
   const totalLength = props.updatedSearch ? 
-    data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
+    props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
     .filter(ticket => props.updatedPrices.includes(ticket.price)).length
     : 
-    data.filter(ticket => props.updatedPrices.includes(ticket.price)).length
+    props.data.filter(ticket => props.updatedPrices.includes(ticket.price)).length
     
   const sliceLength = props.updatedSearch ?
-    data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
+    props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
     .filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).length
     : 
-    data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).length
-
-  useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(process.env.REACT_APP_DEV)
-      setData(request.data)
-      return request;
-    }
-    fetchData();
-  }, []);
+    props.data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).length
 
   // Sort by functions
   function sortNameAsc(a, b){
@@ -76,19 +66,17 @@ function TicketContainer(props)
     }
   }
 
-  console.log(props.updatedView)
-
   return(
     <>
     <div className={classes.ticketContainer}>
         {props.updatedSearch ?
-          data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
+          props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
           .filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).map(ticket => (
-            <TicketPreview key={ticket.id} data={ticket}/> 
+            <TicketPreview key={ticket.id} data={ticket} view={props.updatedView} /> 
           ))
           :
-          data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).map(ticket => (
-            <TicketPreview key={ticket.id} data={ticket}/> 
+          props.data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).map(ticket => (
+            <TicketPreview key={ticket.id} data={ticket} view={props.updatedView}/> 
           ))}
       </div>
     <div className={classes.loadResults}>

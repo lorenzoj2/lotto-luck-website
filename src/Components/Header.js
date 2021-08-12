@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import logo from '../logo.png'
 import useStyles from '../styles'
 
-function Header() {
+function Header(props) {
   const classes = useStyles();
 
   return (
     <div>
       <div className={classes.navLogo}>
-        <Link to='/'>
+        <Link to={{pathname: '/', state: {view: props.location.state ? props.location.state.view : 'grid'}}}>
           <img className={classes.navLogoImage} src={logo} alt='Logo' />
         </Link>
       </div>
@@ -21,15 +21,4 @@ function Header() {
   );
 }
 
-export default Header;
-
-
-/**
- <div className={classes.navBarLink}>
-          <Typography variant='h6'>Winning Tickets</Typography>
-        </div>
-    
-        <div className={classes.navBarLink}>
-          <Typography variant='h6'>Random Picker</Typography>
-        </div>
- */
+export default withRouter(Header);
