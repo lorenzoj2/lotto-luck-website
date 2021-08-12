@@ -55,8 +55,6 @@ function TicketContainer(props){
       props.data.sort(sortNameAsc);
   }
   
-  console.log(props.updatedSortBy)
-
   // Load more tickets
   function loadMore(){
     if(displaySize + 16 < totalLength){

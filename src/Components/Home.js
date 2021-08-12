@@ -31,7 +31,6 @@ function Home(props) {
     async function fetchData() {
       const request = await axios.get(process.env.REACT_APP_DEV)
       setData(request.data)
-      console.log(request)
       return request;
     }
     fetchData();
