@@ -6,7 +6,6 @@ import TicketPreview from './TicketPreview';
 
 function TicketContainer(props){
   const classes = useStyles();
-  const [data, setData] = useState([]);
   const [displaySize, setDisplaySize] = useState(16);
 
   const totalLength = props.updatedSearch ? 
@@ -41,20 +40,22 @@ function TicketContainer(props){
 
   switch(props.updatedSortBy){
     case 'nameAsc':
-      data.sort(sortNameAsc);
+      props.data.sort(sortNameAsc);
       break;
     case 'nameDesc':
-      data.sort(sortNameDesc);
+      props.data.sort(sortNameDesc);
       break;
     case 'priceAsc':
-      data.sort(sortPriceAsc);
+      props.data.sort(sortPriceAsc);
       break;
     case 'priceDesc':
-      data.sort(sortPriceDesc);
+      props.data.sort(sortPriceDesc);
       break;
     default: 
-      data.sort(sortNameAsc);
+      props.data.sort(sortNameAsc);
   }
+  
+  console.log(props.updatedSortBy)
 
   // Load more tickets
   function loadMore(){

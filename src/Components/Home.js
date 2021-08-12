@@ -27,12 +27,11 @@ function Home(props) {
     { field: 'time', headerName: 'Time', width: 300 },
   ];
 
-  console.log(data)
-
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(process.env.REACT_APP_DEV)
       setData(request.data)
+      console.log(request)
       return request;
     }
     fetchData();
