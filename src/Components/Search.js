@@ -15,10 +15,8 @@ function Search(props) {
 
   const [filteredPrices, setFilteredPrices] = useState([]);
   const [sortByValue, setSortByValue] = useState(0);
-  const[showSortBy, setShowSortBy] = useState(true);
   const [search, setSearch] = useState('');
   const [view, setView] = useState(props.location.state ? props.location.state.view : 'grid');
-
 
   function handleSearch(e){
     setSearch(e.target.value)
@@ -51,13 +49,6 @@ function Search(props) {
   function handleView(e){
     setView(e.target.value)
     props.onViewUpdate(e.target.value)
-
-    if(e.target.value === 'grid'){
-      setShowSortBy(true)
-    }
-    else{
-      setShowSortBy(false)
-    }
   }  
 
   return (
@@ -83,7 +74,7 @@ function Search(props) {
           </div>
         </div>
 
-        <div style={showSortBy ? {} : {pointerEvents: 'none', opacity: '.50',}} className={classes.sortBy}>
+        <div style={view === 'grid' ? {} : {pointerEvents: 'none', opacity: '.50',}} className={classes.sortBy}>
           <div>Sort by</div>
           <Select variant='outlined' native value={sortByValue} onChange={(e) => handleSortBy(e)} autoWidth className={classes.sortBar}>
             <option value={'nameAsc'}>Game Name (A - Z)</option>

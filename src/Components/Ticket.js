@@ -32,7 +32,6 @@ function Ticket(props){
           <tr key={i}>
             <td className={classes.prizeTableData} style={{width: '10%'}}><b>{getOrdinal(i)}</b></td>
             <td className={classes.prizeTableData} style={{width: '25%',}}>{x}</td>
-            <td className={classes.prizeTableData} style={{width: '20%'}}>{oldPrizeData[x]}</td>
             <td className={classes.prizeTableData} style={{width: '20%'}}>{prizeData[x]}</td>
             <td className={classes.prizeTableData} style={{width: '25%'}}>-{(parseInt((oldPrizeData[x]).replaceAll(',', '')) - parseInt(prizeData[x].replaceAll(',', ''))).toLocaleString('en-US')}</td>
           </tr>
@@ -92,8 +91,7 @@ function Ticket(props){
                 <tr>
                   <th className={classes.prizeTableData}>Prize Level</th>
                   <th className={classes.prizeTableData}>Prize Amount</th>
-                  <th className={classes.prizeTableData}>Prizes Remaining <br/>(Previous Update)</th>
-                  <th className={classes.prizeTableData}>Prizes Remaining <br/>(Current)</th>
+                  <th className={classes.prizeTableData}>Prizes Remaining</th>
                   <th className={classes.prizeTableData}>Sold Since Last Scan</th>
                 </tr>
               </thead>
