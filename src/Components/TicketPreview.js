@@ -7,13 +7,13 @@ function TicketPreview(props){
 
   return(
     <div className={classes.ticketPreview}>
-      <Link className={classes.link} to={{pathname: `/tickets/${props.data.number}`, state: {view: props.view}}}>
+      <Link className={classes.link} to={{pathname: `/tickets/${props.data.ticket_number}`, state: {view: props.view}}}>
       <div className={classes.ticketPreviewHeader}>
         <span className={classes.ticketPreviewName}>{props.data.name}</span>
-        <span>#{props.data.number}</span>
+        <span>#{props.data.ticket_number}</span>
       </div>
       <div className={classes.ticketPreviewImageContainer}>
-        <img src={`/img/oh_${props.data.price}_${props.data.number}.jpg`} className={classes.ticketPreviewImage} alt={props.data.name.concat(' Scratch Off Ticket Preview')}/>
+        <img src={`/img/oh_${props.data.price}_${props.data.ticket_number}.jpg`} className={classes.ticketPreviewImage} alt={props.data.name.concat(' Scratch Off Ticket Preview')}/>
       </div>
       <div className={classes.ticketPreviewInfo}>
         <span className={classes.ticketPreviewPrice}>${props.data.price}</span>

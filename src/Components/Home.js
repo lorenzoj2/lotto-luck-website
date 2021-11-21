@@ -68,7 +68,7 @@ function Home(props) {
       <Search onSearchUpdate={setSearch} onPricesUpdate={setSelectedPrices} onSortByUpdate={setSortBy} onViewUpdate={setView} />
       {view === 'list' ? 
       <div className={classes.dataGrid}> 
-        <DataGrid pageSize={10} getRowId={(row) => row.number} onRowSelected={(e) => handleRowSelect(e)} rows={getRows()} columns={columns} />
+        <DataGrid pageSize={10} getRowId={(row) => row.ticket_number} onRowSelected={(e) => handleRowSelect(e)} rows={getRows()} columns={columns} />
       </div>
       :
       <TicketContainer data={data} updatedPrices={selectedPrices} updatedSortBy={sortBy} updatedSearch={search} updatedView={view} />

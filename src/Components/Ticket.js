@@ -62,30 +62,39 @@ function Ticket(props){
         <>
           <h1 style={{textAlign: 'center',}}>{data[0].name}</h1>
           <div className={classes.ticketInfo}>
+
             <div className={classes.ticketImageContainer}>
-              <img src={`/img/oh_${data[0].price}_${data[0].number}.jpg`} alt={data[0].name.concat( 'Scratch Off Ticket')} className={classes.ticketImage}/>
+              <img src={`/img/oh_${data[0].price}_${data[0].ticket_number}.jpg`} alt={data[0].name.concat( 'Scratch Off Ticket')} className={classes.ticketImage}/>
             </div>
+
             <div className={classes.ticketStats}>
               <div className={classes.ticketStatsInner}>
+
                 <div className={classes.ticketStat}>
-                  <div className={classes.ticketStat}><b>Game Number:</b> #{data[0].number}</div>
+                  <div className={classes.ticketStat}><b>Game Number:</b> #{data[0].ticket_number}</div>
                 </div>
+
                 <div className={classes.ticketStat}>
                   <div className={classes.ticketStat} ><b>Odds:</b> 1 in {data[0].odds}</div>
                 </div>
+
                 <div className={classes.ticketStat}>
-                  <div className={classes.ticketStat}><b>Total Prizes Remaining:</b> {getStripped(prizeData).reduce((a, b) => parseInt(a) + parseInt(b), 0).toLocaleString('en-US')}</div>
+                  <div className={classes.ticketStat}><b>Total Prizes Remaining:</b> {data[0].total_prizes_rem || 'n/a'}</div>
                 </div>
+
                 <div className={classes.ticketStat}>
                   <div className={classes.ticketStat}><b>Lotto Luck Score:</b> {(getStripped(prizeData).reduce((a, b) => parseInt(a) + parseInt(b), 0) / (data[0].price * data[0].odds * 1000)).toFixed(2)}</div>
                 </div>
+
                 <div className={classes.ticketStat}>
                   <div className={classes.ticketStat}><b>Last Updated:</b> {data[0].time.split(' ')[0]}</div>
                 </div>
               </div>
             </div>
           </div>
-          <div className={classes.ticketPrizeInfo}>
+
+        {/* Table containing current prizes and tickets remaining */}
+        <div className={classes.ticketPrizeInfo}>
             <table className={classes.prizeTable}>
               <thead className={classes.prizeTableHeader}>
                 <tr>
@@ -102,8 +111,7 @@ function Ticket(props){
           </div>
         </>
         :
-        <div>
-        </div>
+        <div/>
       }
     </div>
   );

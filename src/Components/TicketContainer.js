@@ -9,13 +9,13 @@ function TicketContainer(props){
   const [displaySize, setDisplaySize] = useState(16);
 
   const totalLength = props.updatedSearch ? 
-    props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
+    props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.ticket_number.startsWith(props.updatedSearch))
     .filter(ticket => props.updatedPrices.includes(ticket.price)).length
     : 
     props.data.filter(ticket => props.updatedPrices.includes(ticket.price)).length
     
   const sliceLength = props.updatedSearch ?
-    props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
+    props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.ticket_number.startsWith(props.updatedSearch))
     .filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).length
     : 
     props.data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).length
@@ -69,15 +69,15 @@ function TicketContainer(props){
     <>
     <div className={classes.ticketContainer}>
         {props.updatedSearch ?
-          props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.number.startsWith(props.updatedSearch))
+          props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.ticket_number.startsWith(props.updatedSearch))
           .filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).map(ticket => (
-            <TicketPreview key={ticket.id} data={ticket} view={props.updatedView} /> 
+            <TicketPreview key={ticket.ticket_number} data={ticket} view={props.updatedView} /> 
           ))
           :
           props.data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).map(ticket => (
-            <TicketPreview key={ticket.id} data={ticket} view={props.updatedView}/> 
+            <TicketPreview key={ticket.ticket_number} data={ticket} view={props.updatedView}/> 
           ))}
-      </div>
+    </div>
     <div className={classes.loadResults}>
         <div>
           {sliceLength < totalLength ? <button className={classes.loadMore} onClick={() => loadMore()}>Load More</button> : <div/>}
