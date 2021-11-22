@@ -8,17 +8,10 @@ function TicketContainer(props){
   const classes = useStyles();
   const [displaySize, setDisplaySize] = useState(16);
 
-  const totalLength = props.updatedSearch ? 
-    props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.ticket_number.startsWith(props.updatedSearch))
-    .filter(ticket => props.updatedPrices.includes(ticket.price)).length
-    : 
-    props.data.filter(ticket => props.updatedPrices.includes(ticket.price)).length
-    
-  const sliceLength = props.updatedSearch ?
-    props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.ticket_number.startsWith(props.updatedSearch))
-    .filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).length
-    : 
-    props.data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).length
+  const filtered = props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.ticket_number.startsWith(props.updatedSearch)).filter(ticket => props.updatedPrices.includes(ticket.price));
+  const totalLength = filtered.length;
+  const sliceLength = filtered.slice(0, displaySize).length;
+
 
   // Sort by functions
   function sortNameAsc(a, b){
@@ -68,16 +61,13 @@ function TicketContainer(props){
   return(
     <>
     <div className={classes.ticketContainer}>
-        {props.updatedSearch ?
-          props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.ticket_number.startsWith(props.updatedSearch))
-          .filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).map(ticket => (
+        {
+          filtered.slice(0, displaySize).map(ticket => (
             <TicketPreview key={ticket.ticket_number} data={ticket} view={props.updatedView} /> 
           ))
-          :
-          props.data.filter(ticket => props.updatedPrices.includes(ticket.price)).slice(0, displaySize).map(ticket => (
-            <TicketPreview key={ticket.ticket_number} data={ticket} view={props.updatedView}/> 
-          ))}
+        }
     </div>
+
     <div className={classes.loadResults}>
         <div>
           {sliceLength < totalLength ? <button className={classes.loadMore} onClick={() => loadMore()}>Load More</button> : <div/>}

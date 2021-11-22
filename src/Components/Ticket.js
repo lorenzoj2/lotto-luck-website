@@ -10,9 +10,7 @@ function Ticket(props){
   const classes = useStyles();
   const {id} = useParams();
   const [data, setData] = useState([]);
-  const [prizeData, setPrizeData] = useState([]);
-  const [oldPrizeData, setOldPrizeData] = useState(false)
-
+  
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(process.env.REACT_APP_DEV_ID.concat(id))
@@ -20,7 +18,7 @@ function Ticket(props){
 
       // Redirect to 404 if there is no data for the ticket
       if (request.data.length === 0){
-        history.push({pathname: `/*`})
+        history.push({pathname: `/404`})
       }
 
       return request;
@@ -28,24 +26,32 @@ function Ticket(props){
 
     fetchData();
   }, [id, history]);
-
   function tbody(){
-    var rows = [];
-    if(oldPrizeData){
+    var rows=[];
+    if(data.length > 0) {
+      let current = JSON.parse(data[0].prize);
+      let old = JSON.parse(data[1].prize);
+
       let i = 1;
-      for(let x in prizeData){
+
+      for(let x in current){
+        let currRem = parseInt(current[x].replaceAll(',', ''));
+        let oldRem = parseInt(old[x].replaceAll(',', ''));
+        let soldSince = oldRem - currRem;
+
         rows.push(
           <tr key={i}>
             <td className={classes.prizeTableData} style={{width: '10%'}}><b>{getOrdinal(i)}</b></td>
-            <td className={classes.prizeTableData} style={{width: '25%',}}>{x}</td>
-            <td className={classes.prizeTableData} style={{width: '20%'}}>{prizeData[x]}</td>
-            <td className={classes.prizeTableData} style={{width: '25%'}}>-{(parseInt((oldPrizeData[x]).replaceAll(',', '')) - parseInt(prizeData[x].replaceAll(',', ''))).toLocaleString('en-US')}</td>
+            <td className={classes.prizeTableData} style={{width: '10%'}}>{x}</td>
+            <td className={classes.prizeTableData} style={{width: '10%'}}>{current[x]}</td>
+            <td className={classes.prizeTableData} style={{width: '10%'}}>{soldSince}</td>
           </tr>
         );
         i += 1;
       }
     }
-      return rows;
+
+    return rows;
   }
 
   function getOrdinal(n){
@@ -54,26 +60,10 @@ function Ticket(props){
     return n + (suffix[(x-20)%10] || suffix[x] || suffix[0]);
   }
 
-  function getStripped(unstripped){
-    var arr = [];
-
-    for(let x in unstripped){
-      arr.push(prizeData[x].replaceAll(',', ''));
-    }
-
-    return arr;
-  }
-
-  if(prizeData.length <= 0 && data.length > 0){
-    setPrizeData(JSON.parse(data[0].prize))
-    setOldPrizeData(JSON.parse(data[1].prize))
-  }
-
-
   return(
-    <div className={classes.ticket}>
-      {data.length > 0 ? 
-        <>
+    <>
+    {data.length > 0 &&
+      <div className={classes.ticket}>
           <h1 style={{textAlign: 'center',}}>{data[0].name}</h1>
           <div className={classes.ticketInfo}>
 
@@ -97,7 +87,7 @@ function Ticket(props){
                 </div>
 
                 <div className={classes.ticketStat}>
-                  <div className={classes.ticketStat}><b>Lotto Luck Score:</b> {(getStripped(prizeData).reduce((a, b) => parseInt(a) + parseInt(b), 0) / (data[0].price * data[0].odds * 1000)).toFixed(2)}</div>
+                  <div className={classes.ticketStat}><b>Lotto Luck Score:</b> 1.0</div>
                 </div>
 
                 <div className={classes.ticketStat}>
@@ -107,27 +97,25 @@ function Ticket(props){
             </div>
           </div>
 
-        {/* Table containing current prizes and tickets remaining */}
-        <div className={classes.ticketPrizeInfo}>
-            <table className={classes.prizeTable}>
-              <thead className={classes.prizeTableHeader}>
-                <tr>
-                  <th className={classes.prizeTableData}>Prize Level</th>
-                  <th className={classes.prizeTableData}>Prize Amount</th>
-                  <th className={classes.prizeTableData}>Prizes Remaining</th>
-                  <th className={classes.prizeTableData}>Sold Since Last Scan</th>
-                </tr>
-              </thead>
-              <tbody className={classes.prizeTableBody}>
-              {tbody()}
-              </tbody>
-            </table>
+          {/* Table containing current prizes and tickets remaining */}
+          <div className={classes.ticketPrizeInfo}>
+              <table className={classes.prizeTable}>
+                <thead className={classes.prizeTableHeader}>
+                  <tr>
+                    <th className={classes.prizeTableData}>Prize Level</th>
+                    <th className={classes.prizeTableData}>Prize Amount</th>
+                    <th className={classes.prizeTableData}>Prizes Remaining</th>
+                    <th className={classes.prizeTableData}>Sold Since Last Scan</th>
+                  </tr>
+                </thead>
+                <tbody className={classes.prizeTableBody}>
+                {tbody()}
+                </tbody>
+              </table>
           </div>
-        </>
-        :
-        <div/>
-      }
-    </div>
+      </div>
+    }
+    </>
   );
 }
 

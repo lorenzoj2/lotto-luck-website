@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, withRouter } from "react-router-dom";
-
 import { DataGrid, GridColDef } from '@material-ui/data-grid';
 
 import axios from '../axios'
@@ -18,7 +17,7 @@ function Home(props) {
   const [sortBy, setSortBy] = useState(0);
   const [view, setView] = useState(props.location.state ? props.location.state.view : 'grid');
   const [data, setData] = useState([]);
-
+  
   const columns: GridColDef[] = [
     { field: 'number', headerName: 'Number', width: 150 },
     { field: 'name', headerName: 'Ticket Name', width: 300},
@@ -36,10 +35,6 @@ function Home(props) {
     fetchData();
   }, []);
 
-  if(selectedPrices.length <= 0){
-    setSelectedPrices(['1', '2', '3', '5', '10', '20', '30'])
-  }
-
   function getRows(){
     let rows = data.map(({pic, prize, ...row}) => row)
 
@@ -56,22 +51,45 @@ function Home(props) {
         }
       }
     }
+
     return rows
-  }
+  } 
 
   function handleRowSelect(e){
-    history.push({pathname: `/ticket/${e.data.number}`, state: {view: view}})
+    history.push({pathname: `/ticket/${e.data.ticket_number}`, state: {view: view}})
   }
   
   return (
     <div className={classes.home}>   
-      <Search onSearchUpdate={setSearch} onPricesUpdate={setSelectedPrices} onSortByUpdate={setSortBy} onViewUpdate={setView} />
+      <Search 
+        updatedSearch={search}
+        onSearchUpdate={setSearch} 
+        updatedPrices={selectedPrices}
+        onPricesUpdate={setSelectedPrices} 
+        updatedSort={sortBy}
+        onSortByUpdate={setSortBy} 
+        updatedView={view}
+        onViewUpdate={setView} 
+      />
+
       {view === 'list' ? 
       <div className={classes.dataGrid}> 
-        <DataGrid pageSize={10} getRowId={(row) => row.ticket_number} onRowSelected={(e) => handleRowSelect(e)} rows={getRows()} columns={columns} />
+        <DataGrid 
+          pageSize={10} 
+          getRowId={(row) => row.ticket_number} 
+          onRowSelected={(e) => handleRowSelect(e)} 
+          rows={getRows()} 
+          columns={columns} 
+        />
       </div>
       :
-      <TicketContainer data={data} updatedPrices={selectedPrices} updatedSortBy={sortBy} updatedSearch={search} updatedView={view} />
+      <TicketContainer 
+        data={data} 
+        updatedPrices={selectedPrices.length > 0 ? selectedPrices : ['1', '2', '3', '5', '10', '20', '30']} 
+        updatedSortBy={sortBy} 
+        updatedSearch={search} 
+        updatedView={view} 
+      />
       }
     </div>
   );

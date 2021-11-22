@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 
 import { Typography } from '@material-ui/core';
@@ -13,41 +12,32 @@ import Checkbox from './Checkbox'
 function Search(props) {
   const classes = useStyles();
 
-  const [filteredPrices, setFilteredPrices] = useState([]);
-  const [sortByValue, setSortByValue] = useState(0);
-  const [search, setSearch] = useState('');
-  const [view, setView] = useState(props.location.state ? props.location.state.view : 'grid');
-
   function handleSearch(e){
-    setSearch(e.target.value)
-    var updatedSearch = e.target.value;
-    props.onSearchUpdate(updatedSearch)
+    props.onSearchUpdate(e.target.value)
   }
 
   function filterPrices(e){
-    if(filteredPrices.includes(e.target.id)){
-      const index = filteredPrices.indexOf(e.target.id);
-      if(index >- 1) {
-        filteredPrices.splice(index, 1);
+    var updatedPrices = props.updatedPrices.slice();
+
+    if(updatedPrices.includes(e.target.id)){
+      const index = updatedPrices.indexOf(e.target.id)
+
+      if(index > -1){
+        updatedPrices.splice(index, 1)
       }
     }
     else{
-      filteredPrices.push(e.target.id);
+      updatedPrices.push(e.target.id);
     }
 
-    setFilteredPrices(filteredPrices.sort());
-    var updatedPrices = filteredPrices.slice();
-    props.onPricesUpdate(updatedPrices);
+    props.onPricesUpdate(updatedPrices);  
   }
 
   function handleSortBy(e){
-    setSortByValue(e.target.value);
-    var updatedSort = e.target.value;
-    props.onSortByUpdate(updatedSort);
+    props.onSortByUpdate(e.target.value);
   }
 
   function handleView(e){
-    setView(e.target.value)
     props.onViewUpdate(e.target.value)
   }  
 
@@ -56,10 +46,19 @@ function Search(props) {
       <div className={classes.searchTitle}>
         <Typography variant='h5'>Ohio Lottery Scratch-Off Tickets</Typography>
       </div>
+
       <div className={classes.searchBar}>
-        <OutlinedInput value={search} onChange={(e) => handleSearch(e)} placeholder='Search Ticket Name or Number' fullWidth endAdornment={<InputAdornment position='end'><SearchIcon fontSize='default' /></InputAdornment>} />
+        <OutlinedInput 
+          value={props.updatedSearch} 
+          onChange={(e) => handleSearch(e)} 
+          placeholder='Search Ticket Name or Number' 
+          fullWidth 
+          endAdornment={
+            <InputAdornment position='end'><SearchIcon fontSize='default' /></InputAdornment>
+          } 
+        />
       </div>
-      <div />
+
       <div className={classes.searchFilters}>
         <div className={classes.priceFilter}>
           <div>Filter by price</div>
@@ -74,9 +73,15 @@ function Search(props) {
           </div>
         </div>
 
-        <div style={view === 'grid' ? {} : {pointerEvents: 'none', opacity: '.50',}} className={classes.sortBy}>
+        <div style={props.updatedView === 'grid' ? {} : {pointerEvents: 'none', opacity: '.50',}} className={classes.sortBy}>
           <div>Sort by</div>
-          <Select variant='outlined' native value={sortByValue} onChange={(e) => handleSortBy(e)} autoWidth className={classes.sortBar}>
+          <Select 
+            variant='outlined' 
+            native value={props.updatedSort} 
+            onChange={(e) => handleSortBy(e)} 
+            autoWidth 
+            className={classes.sortBar}
+          >
             <option value={'nameAsc'}>Game Name (A - Z)</option>
             <option value={'nameDesc'}>Game Name (Z - A)</option>
             <option value={'priceAsc'}>Price: Low to High</option>
@@ -86,7 +91,13 @@ function Search(props) {
 
         <div className={classes.defaultView}>
           <div>Default View</div>
-          <Select variant='outlined' native value={view} onChange={(e) => handleView(e)} fullWidth className={classes.sortBar}>
+          <Select 
+            variant='outlined' 
+            native value={props.updatedView} 
+            onChange={(e) => handleView(e)} 
+            fullWidth 
+            className={classes.sortBar}
+          >
             <option value={'grid'}>Grid</option>
             <option value={'list'}>List</option>
           </Select>

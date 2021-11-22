@@ -354,6 +354,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     left: '0',
     bottom: '0',
+    right: '0',
     width: '100%',
     backgroundImage: 'linear-gradient(#8C2323, #660000)',
   },
@@ -374,6 +375,7 @@ const useStyles = makeStyles((theme) => ({
   // Not Found
   notFound: {
     height: '100%',
+
   },
 
 
