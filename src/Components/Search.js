@@ -92,8 +92,6 @@ function Search(props) {
           </Select>
         </div>
       </div>
-
-  
     </div>
   );
 }

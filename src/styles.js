@@ -371,6 +371,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // Not Found
+  notFound: {
+    height: '100%',
+  },
+
 
 }));
 

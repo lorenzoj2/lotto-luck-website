@@ -26,7 +26,7 @@ function Home(props) {
     { field: 'price', headerName: 'Price', width: 150 },
     { field: 'time', headerName: 'Time', width: 300 },
   ];
-
+  
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(process.env.REACT_APP_DEV)
@@ -60,7 +60,7 @@ function Home(props) {
   }
 
   function handleRowSelect(e){
-    history.push({pathname: `/tickets/${e.data.number}`, state: {view: view}})
+    history.push({pathname: `/ticket/${e.data.number}`, state: {view: view}})
   }
   
   return (

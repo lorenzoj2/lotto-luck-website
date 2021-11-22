@@ -1,28 +1,34 @@
-import { useParams } from "react-router-dom";
-import React, {useState, useEffect} from 'react';
+import { useParams, useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 
 import axios from '../axios';
-import useStyles from '../styles'
+import useStyles from '../styles';
+
 
 function Ticket(props){
+  const history = useHistory();
   const classes = useStyles();
   const {id} = useParams();
   const [data, setData] = useState([]);
   const [prizeData, setPrizeData] = useState([]);
   const [oldPrizeData, setOldPrizeData] = useState(false)
-  
+
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(process.env.REACT_APP_DEV_ID.concat(id))
       setData(request.data)
-      setPrizeData(JSON.parse(request.data[0].prize))
-      setOldPrizeData(JSON.parse(request.data[1].prize))
+
+      // Redirect to 404 if there is no data for the ticket
+      if (request.data.length === 0){
+        history.push({pathname: `/*`})
+      }
+
       return request;
     }
 
     fetchData();
-  }, [id]);
-  
+  }, [id, history]);
+
   function tbody(){
     var rows = [];
     if(oldPrizeData){
@@ -50,11 +56,19 @@ function Ticket(props){
 
   function getStripped(unstripped){
     var arr = [];
+
     for(let x in unstripped){
-      arr.push(prizeData[x].replaceAll(',', ''))
+      arr.push(prizeData[x].replaceAll(',', ''));
     }
+
     return arr;
   }
+
+  if(prizeData.length <= 0 && data.length > 0){
+    setPrizeData(JSON.parse(data[0].prize))
+    setOldPrizeData(JSON.parse(data[1].prize))
+  }
+
 
   return(
     <div className={classes.ticket}>

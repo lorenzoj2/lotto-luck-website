@@ -1,13 +1,15 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 import Header from './Components/Header';
 import Home from './Components/Home';
 import Ticket from './Components/Ticket';
 import Footer from './Components/Footer';
-import reportWebVitals from './reportWebVitals';
+import NotFound from './Components/NotFound';
 
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,10 +19,8 @@ ReactDOM.render(
           <Route exact path='/'>
             <Home view='grid' />
           </Route>
-          <Route path='/tickets/:id' component={Ticket} />
-          <Route>
-            Sorry, this page doesn't exist.
-          </Route>
+          <Route path='/ticket/:id' component={Ticket} />
+          <Route path='*' component={NotFound} />
         </Switch>
       <Footer />
     </BrowserRouter>
