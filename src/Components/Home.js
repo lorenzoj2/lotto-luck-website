@@ -7,32 +7,31 @@ import useStyles from '../styles'
 import Search from './Search';
 import TicketContainer from './TicketContainer';
 
-
 function Home(props) {
   const history = useHistory();
   const classes = useStyles();
 
   const [search, setSearch] = useState('');
-  const [selectedPrices, setSelectedPrices] = useState([]);
-  const [sortBy, setSortBy] = useState(0);
+  const [selectedPrices, setSelectedPrices] = useState(props.location.state ? props.location.state.prices : []);
+  const [sortBy, setSortBy] = useState(props.location.state ? props.location.state.sortBy : 0);
   const [view, setView] = useState(props.location.state ? props.location.state.view : 'grid');
   const [data, setData] = useState([]);
   
   const columns: GridColDef[] = [
-    { field: 'number', headerName: 'Number', width: 150 },
+    { field: 'ticket_number', headerName: 'Number', width: 150 },
     { field: 'name', headerName: 'Ticket Name', width: 300},
     { field: 'odds', headerName: 'Odds', width: 150 },
     { field: 'price', headerName: 'Price', width: 150 },
     { field: 'time', headerName: 'Time', width: 300 },
   ];
-  
+
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(process.env.REACT_APP_DEV)
       setData(request.data)
       return request;
     }
-    fetchData();
+    fetchData();    
   }, []);
 
   function getRows(){
@@ -56,7 +55,7 @@ function Home(props) {
   } 
 
   function handleRowSelect(e){
-    history.push({pathname: `/ticket/${e.data.ticket_number}`, state: {view: view}})
+    history.push({pathname: `/ticket/${e.row.ticket_number}`, state: {view: view, prices: selectedPrices, sortBy: sortBy}})
   }
   
   return (
@@ -75,10 +74,10 @@ function Home(props) {
       {view === 'list' ? 
       <div className={classes.dataGrid}> 
         <DataGrid 
-          pageSize={10} 
           getRowId={(row) => row.ticket_number} 
-          onRowSelected={(e) => handleRowSelect(e)} 
+          onCellClick={(e) => handleRowSelect(e)} 
           rows={getRows()} 
+          pageSize={25}
           columns={columns} 
         />
       </div>

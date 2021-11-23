@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
+import { withRouter } from "react-router-dom";
 
 import useStyles from '../styles';
 import TicketPreview from './TicketPreview';
-
 
 function TicketContainer(props){
   const classes = useStyles();
@@ -11,7 +11,6 @@ function TicketContainer(props){
   const filtered = props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.ticket_number.startsWith(props.updatedSearch)).filter(ticket => props.updatedPrices.includes(ticket.price));
   const totalLength = filtered.length;
   const sliceLength = filtered.slice(0, displaySize).length;
-
 
   // Sort by functions
   function sortNameAsc(a, b){
@@ -63,7 +62,7 @@ function TicketContainer(props){
     <div className={classes.ticketContainer}>
         {
           filtered.slice(0, displaySize).map(ticket => (
-            <TicketPreview key={ticket.ticket_number} data={ticket} view={props.updatedView} /> 
+            <TicketPreview key={ticket.ticket_number} data={ticket} view={props.updatedView} prices={props.updatedPrices} sortBy={props.updatedSortBy}/> 
           ))
         }
     </div>
@@ -80,4 +79,4 @@ function TicketContainer(props){
   )
 }
 
-export default TicketContainer;
+export default withRouter(TicketContainer);

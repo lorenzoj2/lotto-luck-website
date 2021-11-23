@@ -10,7 +10,6 @@ import Ticket from './Components/Ticket';
 import Footer from './Components/Footer';
 import NotFound from './Components/NotFound';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

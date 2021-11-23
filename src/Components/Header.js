@@ -9,14 +9,16 @@ function Header(props) {
   return (
     <div>
       <div className={classes.navLogo}>
-        <Link to={{pathname: '/', state: {view: props.location.state ? props.location.state.view : 'grid'}}}>
+        <Link to={{pathname: '/', state: { 
+          view: props.location.state ? props.location.state.view : 'grid', 
+          prices: props.location.state ? props.location.state.prices : [],
+          sortBy: props.location.state ? props.location.state.sortBy : 0,
+        }}}>
           <img className={classes.navLogoImage} src={logo} alt='Logo' />
         </Link>
       </div>
-      <div className={classes.navBar}>
-        <div className={classes.navBarLink}>
-        </div>
-      </div>
+
+      <div className={classes.navBar}/>
     </div>
   );
 }

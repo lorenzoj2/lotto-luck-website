@@ -54,7 +54,7 @@ function Search(props) {
           placeholder='Search Ticket Name or Number' 
           fullWidth 
           endAdornment={
-            <InputAdornment position='end'><SearchIcon fontSize='default' /></InputAdornment>
+            <InputAdornment position='end'><SearchIcon fontSize='medium' /></InputAdornment>
           } 
         />
       </div>

@@ -350,7 +350,7 @@ const useStyles = makeStyles((theme) => ({
 
   // Footer
   footer: {
-    height: '10vh',
+    height: '8vh',
     position: 'relative',
     left: '0',
     bottom: '0',
@@ -374,11 +374,8 @@ const useStyles = makeStyles((theme) => ({
 
   // Not Found
   notFound: {
-    height: '100%',
-
+    minHeight: '80vh',
   },
-
-
 }));
 
 export default useStyles;

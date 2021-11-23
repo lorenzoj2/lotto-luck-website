@@ -1,13 +1,17 @@
 import useStyles from '../styles'
-import { Link } from "react-router-dom";
-
+import { Link, withRouter} from "react-router-dom";
 
 function TicketPreview(props){
   const classes = useStyles()
-
+  
   return(
     <div className={classes.ticketPreview}>
-      <Link className={classes.link} to={{pathname: `/ticket/${props.data.ticket_number}`, state: {view: props.view}}}>
+      <Link className={classes.link} to={{pathname: `/ticket/${props.data.ticket_number}`, state: {
+        view: props.view, 
+        prices: props.prices.length === 7 ? [] : props.prices,
+        sortBy: props.sortBy,
+      }}}>
+
       <div className={classes.ticketPreviewHeader}>
         <span className={classes.ticketPreviewName}>{props.data.name}</span>
         <span>#{props.data.ticket_number}</span>
@@ -29,4 +33,4 @@ function TicketPreview(props){
   );
 }
 
-export default TicketPreview;
+export default withRouter(TicketPreview);
