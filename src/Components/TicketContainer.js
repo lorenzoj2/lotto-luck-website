@@ -30,6 +30,14 @@ function TicketContainer(props){
     return b.price - a.price;
   }
 
+  function sortScoreAsc(a, b){
+    return a.ev_score - b.ev_score
+  }
+
+  function sortScoreDesc(a, b){
+    return b.ev_score - a.ev_score
+  }
+
   switch(props.updatedSortBy){
     case 'nameAsc':
       props.data.sort(sortNameAsc);
@@ -42,6 +50,12 @@ function TicketContainer(props){
       break;
     case 'priceDesc':
       props.data.sort(sortPriceDesc);
+      break;
+    case 'scoreAsc':
+      props.data.sort(sortScoreAsc);
+      break;
+    case 'scoreDesc':
+      props.data.sort(sortScoreDesc);
       break;
     default: 
       props.data.sort(sortNameAsc);

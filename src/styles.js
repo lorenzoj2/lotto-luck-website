@@ -224,7 +224,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   ticketPreviewTopPrize: {
-    margin: '1vh 0 0 2vh',
+    margin: '0.5vh 0 0 2vh',
     textAlign: 'left', 
     whiteSpace: 'nowrap', 
     textOverflow: 'ellipsis', 

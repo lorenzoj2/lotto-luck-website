@@ -86,6 +86,8 @@ function Search(props) {
             <option value={'nameDesc'}>Game Name (Z - A)</option>
             <option value={'priceAsc'}>Price: Low to High</option>
             <option value={'priceDesc'}>Price: High to Low</option>
+            <option value={'scoreAsc'}>LL Score: Low to High</option>
+            <option value={'scoreDesc'}>LL Score: High to Low</option>
           </Select>
         </div>
 

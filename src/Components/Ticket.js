@@ -9,7 +9,7 @@ function Ticket(props){
   const classes = useStyles();
   const {id} = useParams();
   const [data, setData] = useState([]);
-  
+
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(process.env.REACT_APP_DEV_ID.concat(id))
@@ -27,23 +27,27 @@ function Ticket(props){
   }, [id, history]);
 
   function tbody(){
-    var rows=[];
+    let rows=[];
+
     if(data.length > 0) {
       let current = JSON.parse(data[0].prize);
-      let old = JSON.parse(data[1].prize);
+      let old = 0;
+
+      // if there is more than one day available
+      data.length > 1 ? old = JSON.parse(data[1].prize) : old = current;
 
       let i = 1;
 
-      for(let x in current){
-        let currRem = parseInt(current[x].replaceAll(',', ''));
-        let oldRem = parseInt(old[x].replaceAll(',', ''));
+      for (const [key, value] of Object.entries(current)){
+        let currRem = parseInt(value.replaceAll(',', ''));
+        let oldRem = parseInt(old[key].replaceAll(',', ''));
         let soldSince = oldRem - currRem;
         
         rows.push(
           <tr key={i}>
             <td className={classes.prizeTableData} style={{width: '10%'}}><b>{getOrdinal(i)}</b></td>
-            <td className={classes.prizeTableData} style={{width: '10%'}}>{x}</td>
-            <td className={classes.prizeTableData} style={{width: '10%'}}>{current[x]}</td>
+            <td className={classes.prizeTableData} style={{width: '10%'}}>{key.replace('$ ', '$')}</td>
+            <td className={classes.prizeTableData} style={{width: '10%'}}>{value}</td>
             <td className={classes.prizeTableData} style={{width: '10%'}}>-{soldSince.toLocaleString('en-US')}</td>
           </tr>
         );
@@ -54,9 +58,10 @@ function Ticket(props){
 
     return rows;
   }
+
   function getOrdinal(n){
-    var suffix = ["th", "st", "nd", "rd"];
-    var x = n%100;
+    let suffix = ["th", "st", "nd", "rd"];
+    let x = n % 100;
     return n + (suffix[(x-20)%10] || suffix[x] || suffix[0]);
   }
   
@@ -86,7 +91,7 @@ function Ticket(props){
               </div>
 
               <div className={classes.ticketStat}>
-                <div className={classes.ticketStat}><b>Lotto Luck Score:</b> 1.0</div>
+                <div className={classes.ticketStat}><b>Lotto Luck Score:</b> {data[0].ev_score !== null ? data[0].ev_score + ' / 10' : 'n/a'}</div>
               </div>
 
               <div className={classes.ticketStat}>

@@ -26,6 +26,8 @@ function TicketPreview(props){
           <b>Top Prize:</b> {Object.keys(JSON.parse(props.data.prize))[0]} 
           <br/>
           <b>Odds of Winning:</b> 1 in {props.data.odds}
+          <br/>
+          <b>Lotto Luck Score:</b> {props.data.ev_score} / 10
           </div> 
       </div>
       </Link>
