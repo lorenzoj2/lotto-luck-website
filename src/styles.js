@@ -244,7 +244,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: 'linear-gradient(#660000, #8C2323)',
     color: '#FFFFFF',
     fontWeight: '900',
-    fontSize: '1em'
+    fontSize: '1em',
+    cursor: 'pointer',   
   },
 
   // Ticket Page
