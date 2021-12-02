@@ -9,7 +9,7 @@ function TicketPreview(props){
       <Link className={classes.link} to={{pathname: `/ticket/${props.data.ticket_number}`, state: {
         view: props.view, 
         prices: props.prices.length === 7 ? [] : props.prices,
-        sortBy: props.sortBy,
+        sortBy: props.sortBy ? props.sortBy : 'nameAsc',
       }}}>
 
       <div className={classes.ticketPreviewHeader}>

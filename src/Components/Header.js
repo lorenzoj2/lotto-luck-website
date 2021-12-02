@@ -12,7 +12,7 @@ function Header(props) {
         <Link to={{pathname: '/', state: { 
           view: props.location.state ? props.location.state.view : 'grid', 
           prices: props.location.state ? props.location.state.prices : [],
-          sortBy: props.location.state ? props.location.state.sortBy : 0,
+          sortBy: props.location.state ? props.location.state.sortBy : 'nameAsc',
         }}}>
           <img className={classes.navLogoImage} src={logo} alt='Logo' />
         </Link>

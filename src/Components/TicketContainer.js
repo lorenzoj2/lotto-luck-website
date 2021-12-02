@@ -8,9 +8,10 @@ function TicketContainer(props){
   const classes = useStyles();
   const [displaySize, setDisplaySize] = useState(16);
 
-  const filtered = props.data.filter(ticket => ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.ticket_number.startsWith(props.updatedSearch)).filter(ticket => props.updatedPrices.includes(ticket.price));
+  const filtered = props.data.filter(ticket => props.updatedPrices.includes(ticket.price) && (ticket.name.toUpperCase().includes(props.updatedSearch.toUpperCase()) || ticket.ticket_number.startsWith(props.updatedSearch)));
   const totalLength = filtered.length;
   const sliceLength = filtered.slice(0, displaySize).length;
+
 
   // Sort by functions
   function sortNameAsc(a, b){
@@ -40,30 +41,30 @@ function TicketContainer(props){
 
   switch(props.updatedSortBy){
     case 'nameAsc':
-      props.data.sort(sortNameAsc);
+      filtered.sort(sortNameAsc);
       break;
     case 'nameDesc':
-      props.data.sort(sortNameDesc);
+      filtered.sort(sortNameDesc);
       break;
     case 'priceAsc':
-      props.data.sort(sortPriceAsc);
+      filtered.sort(sortPriceAsc);
       break;
     case 'priceDesc':
-      props.data.sort(sortPriceDesc);
+      filtered.sort(sortPriceDesc);
       break;
     case 'scoreAsc':
-      props.data.sort(sortScoreAsc);
+      filtered.sort(sortScoreAsc);
       break;
     case 'scoreDesc':
-      props.data.sort(sortScoreDesc);
+      filtered.sort(sortScoreDesc);
       break;
     default: 
-      props.data.sort(sortNameAsc);
+      filtered.sort(sortNameAsc);
   }
   
   // Load more tickets
   function loadMore(){
-    if(displaySize + 16 < totalLength){
+    if(displaySize + 16 <= totalLength){
       setDisplaySize(displaySize + 16)
     }
     else{

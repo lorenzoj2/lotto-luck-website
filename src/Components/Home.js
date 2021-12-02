@@ -13,7 +13,7 @@ function Home(props) {
 
   const [search, setSearch] = useState('');
   const [selectedPrices, setSelectedPrices] = useState(props.location.state ? props.location.state.prices : []);
-  const [sortBy, setSortBy] = useState(props.location.state ? props.location.state.sortBy : 0);
+  const [sortBy, setSortBy] = useState(props.location.state ? props.location.state.sortBy : 'nameAsc');
   const [view, setView] = useState(props.location.state ? props.location.state.view : 'grid');
   const [data, setData] = useState([]);
   
