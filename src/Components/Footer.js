@@ -1,13 +1,13 @@
-import useStyles from '../styles'
+import useStyles from "../styles";
 
-function Footer(){
+function Footer() {
   const classes = useStyles();
 
-  return(
+  return (
     <div className={classes.footer}>
       <p></p>
     </div>
-  )
+  );
 }
 
 export default Footer;

@@ -1,9 +1,9 @@
-import useStyles from '../styles'
+import useStyles from '../styles';
 
-function NotFound(){
-  const classes = useStyles()
+function NotFound() {
+  const classes = useStyles();
 
-  return(
+  return (
     <div className={classes.notFound}>Sorry, the page could not be found.</div>
   );
 }

@@ -1,12 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({  
+const useStyles = makeStyles((theme) => ({
   // Header
   navLogo: {
     backgroundImage: 'linear-gradient(#660000, #8C2323)',
     textAlign: 'center',
     height: '90px',
     width: '100%',
+    cursor: 'pointer',
   },
 
   navLogoImage: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     width: '23%',
     textAlign: 'center',
   },
-  
+
   dataGrid: {
     height: '80vh',
     width: '80%',
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'black',
   },
 
-  // Search 
+  // Search
   search: {
     width: '100%',
     textAlign: 'center',
@@ -75,35 +76,34 @@ const useStyles = makeStyles((theme) => ({
     width: '40%',
     '@media only screen and (max-width: 600px)': {
       width: '100%',
-      paddingBottom: '20px'
+      paddingBottom: '20px',
     },
   },
 
   checkboxContainer: {
-    textAlign: 'center',    
+    textAlign: 'center',
   },
 
- checkboxChecked: {
+  checkboxChecked: {
     float: 'left',
     height: '50px',
     width: '50px',
     position: 'relative',
-    cursor: 'pointer',    
+    cursor: 'pointer',
     backgroundColor: '#660000',
     margin: '12px 12px 0 0',
     color: '#FFFFFF',
     border: 'solid #660000',
     borderRadius: '8px',
     boxShadow: '0 3px 10px rgb(40 0 0 / 0.2)',
-
   },
 
- checkboxUnchecked: {
+  checkboxUnchecked: {
     float: 'left',
     height: '50px',
     width: '50px',
     position: 'relative',
-    cursor: 'pointer',    
+    cursor: 'pointer',
     backgroundColor: '#FFFFFF',
     color: 'black',
     margin: '12px 12px 0 0',
@@ -174,15 +174,15 @@ const useStyles = makeStyles((theme) => ({
     height: '10%',
     paddingLeft: '15px',
     paddingRight: '15px',
-    paddingTop: '15px', 
+    paddingTop: '15px',
     fontSize: '1.05em',
   },
 
   ticketPreviewName: {
-    whiteSpace: 'nowrap', 
-    textOverflow: 'ellipsis', 
-    overflow: 'hidden', 
-    width: '75%', 
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    width: '75%',
     textAlign: 'left',
     fontWeight: 'bold',
   },
@@ -225,14 +225,14 @@ const useStyles = makeStyles((theme) => ({
 
   ticketPreviewTopPrize: {
     margin: '0.5vh 0 0 2vh',
-    textAlign: 'left', 
-    whiteSpace: 'nowrap', 
-    textOverflow: 'ellipsis', 
-    overflow: 'hidden', 
+    textAlign: 'left',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
   },
 
   loadResults: {
-    textAlign: 'center', 
+    textAlign: 'center',
     paddingBottom: '25px',
   },
 
@@ -245,12 +245,12 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF',
     fontWeight: '900',
     fontSize: '1em',
-    cursor: 'pointer',   
+    cursor: 'pointer',
   },
 
   // Ticket Page
   ticket: {
-    width: '100%', 
+    width: '100%',
     height: '100%',
     minHeight: '75vh',
   },

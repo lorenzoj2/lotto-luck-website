@@ -2,7 +2,7 @@ import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Header from './Components/Header';
 import Home from './Components/Home';
@@ -14,13 +14,13 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Header />
-        <Switch>
-          <Route exact path='/'>
-            <Home view='grid' />
-          </Route>
-          <Route path='/ticket/:id' component={Ticket} />
-          <Route path='*' component={NotFound} />
-        </Switch>
+      <Switch>
+        <Route exact path="/">
+          <Home view="grid" />
+        </Route>
+        <Route path="/ticket/:id" component={Ticket} />
+        <Route path="*" component={NotFound} />
+      </Switch>
       <Footer />
     </BrowserRouter>
   </React.StrictMode>,

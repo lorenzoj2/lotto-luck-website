@@ -1,7 +1,7 @@
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter } from 'react-router-dom';
 
-import logo from '../logo.png'
-import useStyles from '../styles'
+import logo from '../logo.png';
+import useStyles from '../styles';
 
 function Header(props) {
   const classes = useStyles();
@@ -9,16 +9,23 @@ function Header(props) {
   return (
     <div>
       <div className={classes.navLogo}>
-        <Link to={{pathname: '/', state: { 
-          view: props.location.state ? props.location.state.view : 'grid', 
-          prices: props.location.state ? props.location.state.prices : [],
-          sortBy: props.location.state ? props.location.state.sortBy : 'nameAsc',
-        }}}>
-          <img className={classes.navLogoImage} src={logo} alt='Logo' />
+        <Link
+          to={{
+            pathname: '/',
+            state: {
+              view: props.location.state ? props.location.state.view : 'grid',
+              prices: props.location.state ? props.location.state.prices : [],
+              sortBy: props.location.state
+                ? props.location.state.sortBy
+                : 'nameAsc',
+            },
+          }}
+        >
+          <img className={classes.navLogoImage} src={logo} alt="Logo" />
         </Link>
       </div>
 
-      <div className={classes.navBar}/>
+      <div className={classes.navBar} />
     </div>
   );
 }

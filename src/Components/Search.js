@@ -1,4 +1,4 @@
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 import { Typography } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -6,63 +6,67 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import SearchIcon from '@material-ui/icons/Search';
 import Select from '@material-ui/core/Select';
 
-import useStyles from '../styles'
-import Checkbox from './Checkbox'
+import useStyles from '../styles';
+import Checkbox from './Checkbox';
 
 function Search(props) {
   const classes = useStyles();
 
-  function handleSearch(e){
-    props.onSearchUpdate(e.target.value)
+  function handleSearch(e) {
+    props.onSearchUpdate(e.target.value);
   }
 
-  function filterPrices(e){
+  function filterPrices(e) {
     var updatedPrices = props.updatedPrices.slice();
 
-    if(updatedPrices.includes(e.target.id)){
-      const index = updatedPrices.indexOf(e.target.id)
+    if (updatedPrices.includes(e.target.id)) {
+      const index = updatedPrices.indexOf(e.target.id);
 
-      if(index > -1){
-        updatedPrices.splice(index, 1)
+      if (index > -1) {
+        updatedPrices.splice(index, 1);
       }
-    }
-    else{
+    } else {
       updatedPrices.push(e.target.id);
     }
 
-    props.onPricesUpdate(updatedPrices);  
+    props.onPricesUpdate(updatedPrices);
   }
 
-  function handleSortBy(e){
+  function handleSortBy(e) {
     props.onSortByUpdate(e.target.value);
   }
 
-  function handleView(e){
-    props.onViewUpdate(e.target.value)
-  }  
+  function handleView(e) {
+    props.onViewUpdate(e.target.value);
+  }
 
   return (
     <div className={classes.search}>
       <div className={classes.searchTitle}>
-        <Typography variant='h5'>Ohio Lottery Scratch-Off Tickets</Typography>
+        <Typography variant="h5">Ohio Lottery Scratch-Off Tickets</Typography>
       </div>
 
       <div className={classes.searchBar}>
-        <OutlinedInput 
-          value={props.updatedSearch} 
-          onChange={(e) => handleSearch(e)} 
-          placeholder='Search Ticket Name or Number' 
-          fullWidth 
+        <OutlinedInput
+          value={props.updatedSearch}
+          onChange={(e) => handleSearch(e)}
+          placeholder="Search Ticket Name or Number"
+          fullWidth
           endAdornment={
-            <InputAdornment position='end'><SearchIcon fontSize='medium' /></InputAdornment>
-          } 
+            <InputAdornment position="end">
+              <SearchIcon fontSize="medium" />
+            </InputAdornment>
+          }
         />
       </div>
 
       <div className={classes.searchFilters}>
         <div className={classes.priceFilter}>
           <div>Filter by price</div>
-          <div onClick={(e) => filterPrices(e)} className={classes.checkboxContainer}>
+          <div
+            onClick={(e) => filterPrices(e)}
+            className={classes.checkboxContainer}
+          >
             <Checkbox price={1} />
             <Checkbox price={2} />
             <Checkbox price={3} />
@@ -73,13 +77,21 @@ function Search(props) {
           </div>
         </div>
 
-        <div style={props.updatedView === 'grid' ? {} : {pointerEvents: 'none', opacity: '.50',}} className={classes.sortBy}>
+        <div
+          style={
+            props.updatedView === 'grid'
+              ? {}
+              : { pointerEvents: 'none', opacity: '.50' }
+          }
+          className={classes.sortBy}
+        >
           <div>Sort by</div>
-          <Select 
-            variant='outlined' 
-            native value={props.updatedSort} 
-            onChange={(e) => handleSortBy(e)} 
-            autoWidth 
+          <Select
+            variant="outlined"
+            native
+            value={props.updatedSort}
+            onChange={(e) => handleSortBy(e)}
+            autoWidth
             className={classes.sortBar}
           >
             <option value={'nameAsc'}>Game Name (A - Z)</option>
@@ -93,11 +105,12 @@ function Search(props) {
 
         <div className={classes.defaultView}>
           <div>Default View</div>
-          <Select 
-            variant='outlined' 
-            native value={props.updatedView} 
-            onChange={(e) => handleView(e)} 
-            fullWidth 
+          <Select
+            variant="outlined"
+            native
+            value={props.updatedView}
+            onChange={(e) => handleView(e)}
+            fullWidth
             className={classes.sortBar}
           >
             <option value={'grid'}>Grid</option>
